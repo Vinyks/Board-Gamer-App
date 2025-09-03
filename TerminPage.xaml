@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Board_Gamer_App.TerminPage"
+             Title="TerminPage">
+    <VerticalStackLayout>
+        <Button Text="Abstimmungen"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            Clicked="OnVotingClicked"/>
+        <Button Text="Teilnehmer"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            Clicked="OnParticipantsClicked"/>
+        <Button Text="Bewertung"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            Clicked="OnRatingClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
