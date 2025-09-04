@@ -4,9 +4,45 @@
              x:Class="Board_Gamer_App.ParticipantPage"
              Title="ParticipantPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Participant Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+      
+        <ScrollView>
+            <ListView x:Name="teilnehmerListe">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="130" />
+                                    <ColumnDefinition Width="130" />
+                                    <ColumnDefinition Width="130" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                </Grid.RowDefinitions>
+                                <Label 
+                                    Text="PNG"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Start" />
+                                <Label 
+                                    Text="{Binding Person}"
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Start" />
+                                <Label 
+                                    Text="{Binding Status}"
+                                    Grid.Column="2"
+                                    Grid.Row="0"
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+
     </VerticalStackLayout>
 </ContentPage>
