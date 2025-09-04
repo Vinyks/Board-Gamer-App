@@ -14,23 +14,21 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0" />
-                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             
-                            <Label Text="{Binding Tag}"
+                            <Label Text="{Binding Datum}"
                                 Grid.Column="1"
                                 FontAttributes="Bold"
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center"/>
+                                HorizontalOptions="Start"/>
                             <Label Text="{Binding Uhrzeit}"
                                 Grid.Column="1"
                                 HorizontalOptions="End"
                                 VerticalOptions="Center"/>
-                            <Label Text="{Binding Ort}"
+                            <Label Text="{Binding Name}"
                                 Grid.Column="1"
-                                Grid.Row="2"
-                                VerticalOptions="Center"/>
+                                Grid.Row="2"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

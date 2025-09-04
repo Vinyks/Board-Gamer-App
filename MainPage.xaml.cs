@@ -10,16 +10,22 @@ namespace Board_Gamer_App
             InitializeComponent();
             var Items = new List<Termine>
             {
-                new Termine(1,"Haslach", "12uhr"),
-                new Termine(5,"Zell", "18uhr"),
-                new Termine(10,"Dirk", "6uhr")
+                new Termine("Huber", new TimeOnly(18, 30), new DateOnly(2025,9,1)),
+                new Termine("Müller", new TimeOnly(16, 45), new DateOnly(2025,9,4)),
+                new Termine("Musterman", new TimeOnly(17, 00), new DateOnly(2025,9,8)),
+                new Termine("Gleiss", new TimeOnly(19, 15), new DateOnly(2025,9,10)),
+                new Termine("Huber", new TimeOnly(18, 30), new DateOnly(2025,9,16)),
             };
             terminListe.ItemsSource = Items;
         }
 
         private async void NavigateToSchedule(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TerminPage());
+
+            Termine termin = (Termine)terminListe.SelectedItem;
+            
+            await Navigation.PushAsync(new TerminPage(termin));
+
         }
 
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

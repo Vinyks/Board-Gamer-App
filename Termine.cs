@@ -7,20 +7,24 @@ using System.Threading.Tasks;
 
 namespace Board_Gamer_App
 {
-    internal class Termine 
+    public class Termine 
     {
-        private int _Tag;
-        private string _Ort, _Uhrzeit;
+        private string _Name;
+        string _Uhrzeit;
+        string _Datum;
+        DateTime _DateTime;
 
-        public Termine(int tag, string ort, string uhrzeit)
+        public Termine(string name, TimeOnly uhrzeit, DateOnly datum)
         {
-            _Tag = tag;
-            _Ort = ort;
-            _Uhrzeit = uhrzeit;
+            _Name = name;
+            _Uhrzeit = uhrzeit.ToString("HH:mm");
+            _Datum = datum.ToString("dd.MM.yyyy");
+            _DateTime = new DateTime(datum, uhrzeit);
         }
 
-        public int Tag { get => _Tag; set => _Tag = value; }
-        public string Ort { get => _Ort; set => _Ort = value; }
+        public string Name { get => _Name; set => _Name = value; }
         public string Uhrzeit { get => _Uhrzeit; set => _Uhrzeit = value; }
+        public string Datum { get => _Datum; set => _Datum = value; }
+        public DateTime DateTime { get => _DateTime; set => _DateTime = value; }
     }
 }

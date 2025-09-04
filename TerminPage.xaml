@@ -3,7 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Board_Gamer_App.TerminPage"
              Title="TerminPage">
-    <VerticalStackLayout>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label x:Name="Name" 
+                   Grid.Row="0" 
+                   Grid.Column="1" 
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+            <Label x:Name="Date" 
+                   Grid.Row="1" 
+                   Grid.Column="0"
+                   FontSize="Medium"/>
+            <Label x:Name="Time" 
+                   Grid.Row="1" 
+                   Grid.Column="2" 
+                   HorizontalTextAlignment="End"
+                   FontSize="Medium"/>
+            <Label x:Name="TimeLeft"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   Text="In"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Medium"/>
+        </Grid>
+    <HorizontalStackLayout>
         <Button Text="Abstimmungen"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
@@ -16,5 +51,6 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             Clicked="OnRatingClicked"/>
-    </VerticalStackLayout>
+    </HorizontalStackLayout>
+    </Grid>
 </ContentPage>
