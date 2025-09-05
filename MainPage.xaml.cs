@@ -65,6 +65,8 @@ namespace Board_Gamer_App
                 new Event("Müller", new TimeOnly(3, 45), new DateOnly(2025,2,24)),
                 new Event("Musterman", new TimeOnly(4, 10), new DateOnly(2025,2,26)),
                 new Event("Gleiss", new TimeOnly(4, 25), new DateOnly(2025,3,30)),
+
+                new Event("Gleiss", new TimeOnly(20, 25), new DateOnly(2025,9,6)),
             };
             
             items = items.OrderBy(x => x.DateTime).ToList();
