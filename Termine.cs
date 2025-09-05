@@ -13,6 +13,7 @@ namespace Board_Gamer_App
         string _Uhrzeit;
         string _Datum;
         DateTime _DateTime;
+        bool _IsFirstItemInFuture = false;
 
         public Termine(string name, TimeOnly uhrzeit, DateOnly datum)
         {
@@ -26,5 +27,6 @@ namespace Board_Gamer_App
         public string Uhrzeit { get => _Uhrzeit; set => _Uhrzeit = value; }
         public string Datum { get => _Datum; set => _Datum = value; }
         public DateTime DateTime { get => _DateTime; set => _DateTime = value; }
+        public bool IsFirstItemInFuture { get => _IsFirstItemInFuture; set => _IsFirstItemInFuture = value; }
     }
 }
