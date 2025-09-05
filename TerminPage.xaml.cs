@@ -4,7 +4,7 @@ public partial class TerminPage : ContentPage
 {
     private bool _StopCountdown;
 
-    public TerminPage(Termine t)
+    public TerminPage(Event t)
     {
         _StopCountdown = false;
         InitializeComponent();
@@ -17,7 +17,7 @@ public partial class TerminPage : ContentPage
 
     }
 
-    private void UpdateTimer(Termine t)
+    private void UpdateTimer(Event t)
     {
         while (!_StopCountdown)
         {
@@ -26,10 +26,15 @@ public partial class TerminPage : ContentPage
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                TimeLeft.Text = string.Format("in {0} Tagen und {1} Stunden {2} Minuten", difference.Days.ToString(), difference.Hours.ToString(), difference.Minutes.ToString());
+                TimeLeft.Text = GetTimeString(difference);
             });
             Task.Delay(1000).Wait();
         }
+    }
+
+    private static string GetTimeString(TimeSpan difference)
+    {
+        return string.Format("in {0} Tagen und {1} Stunden {2} Minuten", difference.Days.ToString(), difference.Hours.ToString(), difference.Minutes.ToString());
     }
 
     private async void NavigateToPage(object sender, EventArgs e, ContentPage page)

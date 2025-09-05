@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Board_Gamer_App
 {
-    public class Termine 
+    public class Event 
     {
         private string _Name;
         string _Uhrzeit;
@@ -15,7 +15,7 @@ namespace Board_Gamer_App
         DateTime _DateTime;
         bool _IsFirstItemInFuture = false;
 
-        public Termine(string name, TimeOnly uhrzeit, DateOnly datum)
+        public Event(string name, TimeOnly uhrzeit, DateOnly datum)
         {
             _Name = name;
             _Uhrzeit = uhrzeit.ToString("HH:mm");

@@ -3,53 +3,90 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Board_Gamer_App.MainPage">
 
-    <ScrollView>
-        <ListView x:Name="terminListe" ItemSelected="OnItemSelected" SeparatorVisibility="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Grid 
-                                Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+    <ScrollView x:Name="ScrollView">
+        <VerticalStackLayout x:Name="ScrollStack">
+            <ListView x:Name="pastEventList" ItemSelected="OnItemSelected" SeparatorVisibility="None" BackgroundColor="DarkGray">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid 
+                                    Padding="10"
+                                    Margin="-5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding Datum}"
-                                Grid.Column="1"
-                                FontAttributes="Bold"
-                                HorizontalOptions="Start"/>
-                            <Label Text="{Binding Uhrzeit}"
-                                Grid.Column="1"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center"/>
-                            <Label Text="{Binding Name}"
-                                Grid.Column="1"
-                                Grid.Row="2"/>
-                            
-                        </Grid>
-
-                            <Grid Grid.Row="2"
-                                  Margin="0,0,0,35">
-                                <BoxView 
-                                HeightRequest="1"
-                                WidthRequest="1000"
-                                VerticalOptions="End"
-                                    Color="Gray"
-                                IsVisible="{Binding IsFirstItemInFuture}"/>
+                                    <Label Text="{Binding Datum}"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                                    <Label Text="{Binding Uhrzeit}"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"/>
+                                    <Label Text="{Binding Name}"
+                                    Grid.Column="1"
+                                    Grid.Row="2"
+                                    VerticalOptions="Center"/>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <BoxView HeightRequest="10"
+                WidthRequest="1000"
+                VerticalOptions="End"
+                Color="Gray"
+                />
+            <ListView x:Name="presentEventList" ItemSelected="OnItemSelected" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid Padding="10"
+                                      Margin="-5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Datum}"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                                    <Label Text="{Binding Uhrzeit}"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"/>
+                                    <Label Text="{Binding Name}"
+                                    Grid.Column="1"
+                                    Grid.Row="2"
+                                    VerticalOptions="Center"/>
+
+                                </Grid>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>
