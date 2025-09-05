@@ -2,7 +2,13 @@
 
 public partial class VotingPage : ContentPage
 {
-    private readonly List<string> _BoardGames = new();
+    private readonly List<BoardGame> _BoardGames = new();
+
+    private bool _DeleteButtonVisible = false;
+    private bool _VoteButtonVisible = true;
+
+    private Color _VotedColor = new Color(10,220,30);
+    private Color _NotVotedColor = new Color(248,249,250);
 
     public VotingPage()
     {
@@ -19,9 +25,9 @@ public partial class VotingPage : ContentPage
             "Add",
             "Cancel",
             "Board game name...",
-            maxLength: 50,
-            keyboard: Keyboard.Text
-        );
+            maxLength: 50
+        ); 
+        
 
         // Check if user entered a name and didn't cancel
         if (!string.IsNullOrWhiteSpace(gameName))
@@ -32,9 +38,9 @@ public partial class VotingPage : ContentPage
 
     private void OnDeleteButtonClicked(object sender, EventArgs e)
     {
-        if (sender is Button button && button.CommandParameter is string game)
+        if (sender is Button button && button.CommandParameter is BoardGame game)
         {
-            _BoardGames.Remove((string)button.CommandParameter);
+            _BoardGames.Remove(game);
 
             RefreshList();
         }
@@ -42,7 +48,34 @@ public partial class VotingPage : ContentPage
 
     private void AddBoardGame(string gameName)
     {
-        _BoardGames.Add(gameName);
+        BoardGame game = new(gameName, _DeleteButtonVisible, _VoteButtonVisible, _VotedColor);
+
+        _BoardGames.Add(game);
+
+        RefreshList();
+    }
+
+    public void OnDeleteVisbilityButtonClicked(object sender, EventArgs e)
+    {
+        _DeleteButtonVisible = !_DeleteButtonVisible;
+        _VoteButtonVisible = !_DeleteButtonVisible;
+
+        foreach (BoardGame g in _BoardGames)
+        {
+            g.DeleteButtonVisible = _DeleteButtonVisible;
+            g.VoteButtonVisible = _VoteButtonVisible;
+        }
+
+        RefreshList();
+    }
+
+    public void OnVoteButtonClicked(object sender, EventArgs e)
+    {
+        if (sender is not Button b) return;
+        if (b.CommandParameter is not BoardGame game) return;
+
+        game.IsVoted = !game.IsVoted;
+        game.BorderColor = game.IsVoted ? _VotedColor : _NotVotedColor;
 
         RefreshList();
     }
