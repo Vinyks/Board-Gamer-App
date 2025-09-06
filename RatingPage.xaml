@@ -24,7 +24,7 @@
                         Shape="Star"
 	                    FillOption ="Shape"
 	                    IsReadOnly="False"
-     
+                            RatingChanged="RatingView_RatingChanged"
 	                    ShapePadding="3,7,7,3"
 	                    ShapeDiameter="37"
 	                    Spacing="3"

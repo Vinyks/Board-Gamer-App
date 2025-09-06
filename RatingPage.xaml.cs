@@ -15,6 +15,10 @@ public partial class RatingPage : ContentPage
             };
         RatingCollectionView.ItemsSource = ratings;
         
-
+    }
+    void RatingView_RatingChanged(object sender, RatingChangedEventArgs e)
+    {
+        double newRating = e.Rating;
+        // The developer can then perform further actions (such as save to DB).
     }
 }
