@@ -1,4 +1,7 @@
-﻿using Board_Gamer_App.Resources.Values;
+﻿#if ANDROID
+using Board_Gamer_App.Platforms.Android;
+#endif
+using Board_Gamer_App.Resources.Values;
 using System.Diagnostics;
 
 namespace Board_Gamer_App
@@ -80,6 +83,11 @@ namespace Board_Gamer_App
             presentEventList.ItemsSource = futureItems;
 
             ExecuteFunctionAfterDelay(1, () => ScrollView.ScrollToAsync(ScrollStack.Children[1] as Element, ScrollToPosition.Start, false));
+#if ANDROID
+            AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
+            androidNotification.DisplayNotification("Test", "Ich teste gerade");
+            androidNotification.DisplayNotification("Testerino", "Ich teste gerade", 25);
+#endif
         }
 
         private async Task ExecuteFunctionAfterDelay(float delayInSeconds, Action function)
@@ -157,5 +165,6 @@ namespace Board_Gamer_App
             presentEventList.SelectedItem = null;
             pastEventList.SelectedItem = null;
         }
+
     }
 }
