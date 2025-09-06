@@ -19,7 +19,6 @@ public partial class TerminPage : ContentPage
 
     private void UpdateTimer(Appointment a)
     {
-        Appointment.AppointmentStatusEnum appointmentStatus = a.AppointmentStatus;
         while (!_StopCountdown)
         {
             a.UpdateAppointmentStatus();
@@ -30,7 +29,7 @@ public partial class TerminPage : ContentPage
 
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    TimeLeft.Text = GetTimeString(difference, appointmentStatus);
+                    TimeLeft.Text = GetTimeString(difference, a.AppointmentStatus);
                 });
             if (a.AppointmentStatus == Appointment.AppointmentStatusEnum.Past) return; //Wenn Termin in der Vergangenheit liegt, Methode beenden.
             Task.Delay(1000).Wait();

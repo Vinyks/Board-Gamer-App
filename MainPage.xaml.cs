@@ -67,7 +67,7 @@ namespace Board_Gamer_App
 
                 new Appointment("Gleiss", new TimeOnly(20, 25), new DateOnly(2025,9,6)),
                 new Appointment("Gleiss", new TimeOnly(00, 00), new DateOnly(2025,9,6)),
-                new Appointment("Gleiss", new TimeOnly(8, 25), new DateOnly(2025,9,6)),
+                new Appointment("Gleiss", new TimeOnly(14, 25), new DateOnly(2025,9,6)),
             };
             
             items = items.OrderBy(x => x.DateTime).ToList();
