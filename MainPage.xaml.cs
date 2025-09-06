@@ -1,11 +1,14 @@
-﻿using Microsoft.Win32.SafeHandles;
+﻿using Board_Gamer_App.Resources.Values;
 using System.Diagnostics;
 
 namespace Board_Gamer_App
 {
     public partial class MainPage : ContentPage
     {
+        //string Spieler = Android.App.Application.Context.GetString(Resource.String.);
         private Appointment _NextTermin;
+        private string _Player = PlayerData.PlayerName;
+
         public MainPage()
         {
             InitializeComponent();
@@ -69,9 +72,7 @@ namespace Board_Gamer_App
                 new Appointment("Gleiss", new TimeOnly(00, 00), new DateOnly(2025,9,6)),
                 new Appointment("Gleiss", new TimeOnly(14, 25), new DateOnly(2025,9,6)),
             };
-            
             items = items.OrderBy(x => x.DateTime).ToList();
-
             List<Appointment> pastItems, futureItems; 
             (pastItems, futureItems) = SplitListByTime(items, DateTime.Now);
 
