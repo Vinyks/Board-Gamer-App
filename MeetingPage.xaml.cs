@@ -1,10 +1,10 @@
 namespace Board_Gamer_App;
 
-public partial class TerminPage : ContentPage
+public partial class MeetingPage : ContentPage
 {
     private bool _StopCountdown;
 
-    public TerminPage(Appointment t)
+    public MeetingPage(Appointment t)
     {
         _StopCountdown = false;
         InitializeComponent();
@@ -24,7 +24,7 @@ public partial class TerminPage : ContentPage
             a.UpdateAppointmentStatus();
             DateTime now = DateTime.Now;
             TimeSpan difference = a.DateTime - now;
-            if (0 == difference.Days) difference = TimeSpan.FromMinutes(Math.Ceiling(difference.TotalMinutes));
+            if (difference.Days == 0) difference = TimeSpan.FromMinutes(Math.Ceiling(difference.TotalMinutes));
             else difference = TimeSpan.FromDays(Math.Round(difference.TotalDays));
 
                 MainThread.BeginInvokeOnMainThread(() =>
@@ -64,5 +64,10 @@ public partial class TerminPage : ContentPage
     public void OnRatingClicked(object sender, EventArgs e)
     {
         NavigateToPage(sender, e, new RatingPage());
+    }
+
+    public void OnFoodClicked(object sender, EventArgs e)
+    {
+        NavigateToPage(sender, e, new FoodPage());
     }
 }

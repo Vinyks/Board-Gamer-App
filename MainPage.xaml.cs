@@ -141,7 +141,7 @@ namespace Board_Gamer_App
             {
                 Appointment termin = (Appointment)view.SelectedItem;
                 _LastTimeNavigated = DateTime.Now;
-                await Navigation.PushAsync(new TerminPage(termin));
+                await Navigation.PushAsync(new MeetingPage(termin));
             }
         }
 

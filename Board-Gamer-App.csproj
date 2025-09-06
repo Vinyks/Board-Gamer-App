@@ -67,6 +67,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="FoodPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ParticipantPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

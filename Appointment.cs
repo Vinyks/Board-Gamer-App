@@ -44,9 +44,9 @@ namespace Board_Gamer_App
             TimeSpan difference = _DateTime - now;
             difference = TimeSpan.FromMinutes(Math.Ceiling(difference.TotalMinutes));
 
-            if (0 == difference.Days && !difference.ToString().Contains("-")) _AppointmentStatus = AppointmentStatusEnum.HoursLeft;
-            else if (0 < difference.Days) _AppointmentStatus = AppointmentStatusEnum.DaysLeft;
-            else if (-12 < difference.Hours && difference.ToString().Contains("-")) _AppointmentStatus = AppointmentStatusEnum.HoursPast;
+            if (difference.Days == 0 && !difference.ToString().Contains("-")) _AppointmentStatus = AppointmentStatusEnum.HoursLeft;
+            else if (difference.Days > 0) _AppointmentStatus = AppointmentStatusEnum.DaysLeft;
+            else if (difference.Days == 0 && difference.Hours > - 12 && difference.ToString().Contains("-")) _AppointmentStatus = AppointmentStatusEnum.HoursPast;
             else _AppointmentStatus = AppointmentStatusEnum.Past;
         }
     }
