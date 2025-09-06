@@ -5,11 +5,11 @@ public partial class ParticipantPage : ContentPage
 	public ParticipantPage()
 	{
 		InitializeComponent();
-        var Items = new List<Teilnehmer>
+        var Items = new List<Participant>
             {
-                new Teilnehmer("Laura", "Kommt"),
-                new Teilnehmer("Willhelm", "Verspätung"),
-                new Teilnehmer("Dirk", "Kommt nicht")
+                new Participant("Laura", "Kommt"),
+                new Participant("Willhelm", "Verspätung"),
+                new Participant("Dirk", "Kommt nicht")
             };
         teilnehmerListe.ItemsSource = Items;
     }
