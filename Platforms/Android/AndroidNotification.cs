@@ -9,6 +9,7 @@ namespace Board_Gamer_App.Platforms.Android
     {
         string _ChannelID, _ChannelName, _ChannelDescription;
         NotificationImportance _NotificationImportance;
+        int _RequestCode = 0, _Id=0;
 
         public AndroidNotification(string channelID, string channelName, string channelDescription, NotificationImportance notificationImportance)
         {
@@ -34,11 +35,18 @@ namespace Board_Gamer_App.Platforms.Android
             }
         }
 
-        public void DisplayNotification(string notificationTitel, string notificationText, int id=1000, int icon = Resource.Drawable.icon)
+        public void DisplayNotification(string pageName, string notificationTitel, string notificationText, int icon = Resource.Drawable.icon)
         {
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(Platform.AppContext, _ChannelID).SetContentTitle(notificationTitel).SetContentText(notificationText).SetSmallIcon(icon).SetAutoCancel(true);
+             Intent intent = new Intent(Platform.AppContext, typeof(MainActivity));
+            intent.PutExtra("navigateTo", pageName);
+            intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
+
+            PendingIntent pendingIntent = PendingIntent.GetActivity(Platform.AppContext, _RequestCode, intent, PendingIntentFlags.Immutable | PendingIntentFlags.UpdateCurrent);
+            _RequestCode++;
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(Platform.AppContext, _ChannelID).SetContentTitle(notificationTitel).SetContentText(notificationText).SetSmallIcon(icon).SetAutoCancel(true).SetContentIntent(pendingIntent);
             NotificationManagerCompat manager = NotificationManagerCompat.From(Platform.AppContext);
-            manager.Notify(id, builder.Build());
+            manager.Notify(_Id, builder.Build());
+            _Id++;
         }
     }
 }

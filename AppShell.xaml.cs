@@ -5,6 +5,10 @@
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute("FoodPage", typeof(FoodPage));
+            Routing.RegisterRoute("ParticipantPage", typeof(ParticipantPage));
+            Routing.RegisterRoute("RatingPage", typeof(RatingPage));
+            Routing.RegisterRoute("VotingPage", typeof(VotingPage));
         }
     }
 }

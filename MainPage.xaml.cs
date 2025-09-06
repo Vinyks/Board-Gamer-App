@@ -1,4 +1,5 @@
 ﻿#if ANDROID
+using Android.OS;
 using Board_Gamer_App.Platforms.Android;
 #endif
 using Board_Gamer_App.Resources.Values;
@@ -85,8 +86,8 @@ namespace Board_Gamer_App
             ExecuteFunctionAfterDelay(1, () => ScrollView.ScrollToAsync(ScrollStack.Children[1] as Element, ScrollToPosition.Start, false));
 #if ANDROID
             AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
-            androidNotification.DisplayNotification("Test", "Ich teste gerade");
-            androidNotification.DisplayNotification("Testerino", "Ich teste gerade", 25);
+            androidNotification.DisplayNotification("RatingPage","Test", "Ich teste gerade");
+            androidNotification.DisplayNotification("VotingPage", "Testerino", "Ich teste gerade");
 #endif
         }
 
@@ -125,7 +126,7 @@ namespace Board_Gamer_App
             }
             //Termine[lastIndex].IsFirstItemInFuture = true;
             _NextTermin = Termine[lastIndex];
-            Trace.WriteLine(lastIndex);
+            //Trace.WriteLine(lastIndex);
         }
 
         private async void HandleSelectionNavigation()
@@ -164,7 +165,7 @@ namespace Board_Gamer_App
             base.OnAppearing();
             presentEventList.SelectedItem = null;
             pastEventList.SelectedItem = null;
+            
         }
-
     }
 }
