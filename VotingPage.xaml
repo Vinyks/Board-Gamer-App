@@ -3,10 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Board_Gamer_App.VotingPage"
              Title="VotingPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Voting Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid>
+        <VerticalStackLayout Spacing="20" Padding="20">
+
+            <Button Text="Brettspiel hinzufügen" 
+                    Clicked="OnAddButtonClicked"
+                    BackgroundColor="#007bff"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="50"/>
+
+            <Label Text="Derzeitige Brettspiele" 
+                   FontSize="18" 
+                   FontAttributes="Bold"
+                   TextColor="#333333"/>
+
+            <CollectionView x:Name="GamesCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="15" 
+                               BackgroundColor="{Binding BorderColor}"
+                               Margin="0,5">
+                            <Grid>
+                                <Label Text="{Binding Name}" 
+                                   FontSize="20"
+                                   TextColor="#212529"
+                                   HorizontalOptions = "Start"
+                                    VerticalOptions = "Center"/>
+                                <Button 
+                                    HorizontalOptions = "End"
+                                    Clicked="OnDeleteButtonClicked"
+                                    CommandParameter="{Binding .}"
+                                    VerticalOptions = "Center"
+                                    MaximumHeightRequest="25"
+                                    MaximumWidthRequest="25"
+                                    TextColor ="Black"
+                                    IsVisible="{Binding DeleteButtonVisible}"
+                                    BackgroundColor="OrangeRed">
+                                </Button>
+                                <Button 
+                                    HorizontalOptions = "End"
+                                    Clicked="OnVoteButtonClicked"
+                                    CommandParameter="{Binding .}"
+                                    VerticalOptions = "Center"
+                                    MaximumHeightRequest="25"
+                                    MaximumWidthRequest="25"
+                                    TextColor ="Black"
+                                    IsVisible="{Binding VoteButtonVisible}"
+                                    BackgroundColor="Green">
+                                </Button>
+                            </Grid>
+
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+        
+        <Button Text="D"
+                Clicked="OnDeleteVisbilityButtonClicked"
+                BackgroundColor="OrangeRed"
+                TextColor="Black"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                Margin="10"
+                />
+    </Grid>
 </ContentPage>
