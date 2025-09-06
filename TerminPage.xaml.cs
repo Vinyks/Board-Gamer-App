@@ -4,7 +4,7 @@ public partial class TerminPage : ContentPage
 {
     private bool _StopCountdown;
 
-    public TerminPage(Event t)
+    public TerminPage(Appointment t)
     {
         _StopCountdown = false;
         InitializeComponent();
@@ -16,40 +16,33 @@ public partial class TerminPage : ContentPage
         );
 
     }
-    enum TimeWaiting
-    {
-        DaysLeft,
-        NoDaysLeft,
-        Past
-    }
 
-    private void UpdateTimer(Event t)
+    private void UpdateTimer(Appointment a)
     {
-        TimeWaiting timeWaiting;
+        Appointment.AppointmentStatusEnum appointmentStatus = a.AppointmentStatus;
         while (!_StopCountdown)
         {
+            a.UpdateAppointmentStatus();
             DateTime now = DateTime.Now;
-            TimeSpan difference = t.DateTime - now;
-            difference = TimeSpan.FromMinutes(Math.Ceiling(difference.TotalMinutes));
-
-            if (0 > difference.Days) timeWaiting = TimeWaiting.Past; 
-            else if (0 < difference.Days) timeWaiting = TimeWaiting.DaysLeft;
-            else timeWaiting = TimeWaiting.NoDaysLeft;
+            TimeSpan difference = a.DateTime - now;
+            if (0 == difference.Days) difference = TimeSpan.FromMinutes(Math.Ceiling(difference.TotalMinutes));
+            else difference = TimeSpan.FromDays(Math.Round(difference.TotalDays));
 
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    TimeLeft.Text = GetTimeString(difference, timeWaiting);
+                    TimeLeft.Text = GetTimeString(difference, appointmentStatus);
                 });
-
-            if (timeWaiting == TimeWaiting.Past) return; //Wenn Termin in der Vergangenheit liegt, Methode beenden.
+            if (a.AppointmentStatus == Appointment.AppointmentStatusEnum.Past) return; //Wenn Termin in der Vergangenheit liegt, Methode beenden.
             Task.Delay(1000).Wait();
         }
     }
 
-    private static string GetTimeString(TimeSpan difference, TimeWaiting timeWaiting)
+    //GGF Umbenennen zu "UpdateGUI" und dann später Farben der Buttons Verändern (Grau=> Blockiert, Purple => Klickbar)
+    private static string GetTimeString(TimeSpan difference, Appointment.AppointmentStatusEnum appointmentStatus)
     {
-        if (timeWaiting == TimeWaiting.DaysLeft) return string.Format("In {0} Tagen", difference.Days.ToString(), difference.Hours.ToString(), difference.Minutes.ToString());
-        else if (timeWaiting == TimeWaiting.NoDaysLeft) return string.Format("In {1} Stunden {2} Minuten", difference.Days.ToString(), difference.Hours.ToString(), difference.Minutes.ToString());
+        if (appointmentStatus == Appointment.AppointmentStatusEnum.DaysLeft) return string.Format("In {0} Tagen", difference.Days.ToString(), difference.Hours.ToString(), difference.Minutes.ToString());
+        else if (appointmentStatus == Appointment.AppointmentStatusEnum.HoursLeft) return string.Format("In {1} Stunden {2} Minuten", difference.Days.ToString(), difference.Hours.ToString(), difference.Minutes.ToString());
+        else if (appointmentStatus == Appointment.AppointmentStatusEnum.HoursPast) return "Dieser Termin hat begonnen";
         else return "Dieser Termin liegt in der Vergangenheit";
     }
 
