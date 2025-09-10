@@ -5,13 +5,13 @@ public partial class ParticipantPage : ContentPage
 	public ParticipantPage()
 	{
 		InitializeComponent();
-        var Items = new List<Participant>
+        var Participant = new List<Participant>
             {
                 new Participant("Laura", "Kommt"),
                 new Participant("Willhelm", "Verspätung"),
                 new Participant("Dirk", "Kommt nicht")
             };
-        teilnehmerListe.ItemsSource = Items;
+        TeilnehmerListe.ItemsSource = Participant;
     }
 
     private async void NavigateToSchedule(object sender, EventArgs e)

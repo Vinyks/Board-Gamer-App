@@ -3,21 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Board_Gamer_App.StatusPage"
              Title="StatusPage">
+
     <VerticalStackLayout>
+
+        <Label Text="Status"
+               x:Name="StatusMessage"
+               FontSize="Medium"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" />
+
         <Button Text="Ich bin pünktlich"
+                Clicked="OnOnTimeButtonClicked"
                 BackgroundColor="Green"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
                 Margin="2"/>
         <Button Text="Ich verspäte mich" 
+                Clicked="OnLateButtonClicked"
                 BackgroundColor="DarkOrange"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
                 Margin="2"/>
         <Button Text="Ich komme nicht"
+                Clicked="OnNotArrivingButtonClicked"
                 BackgroundColor="DarkRed"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
                 Margin="2"/>
+        
     </VerticalStackLayout>
 </ContentPage>
