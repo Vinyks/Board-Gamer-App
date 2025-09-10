@@ -3,10 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Board_Gamer_App.FoodPage"
              Title="FoodPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout x:Name="MainLayout">
         <Label 
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <CollectionView x:Name="CuisineList" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="15"
+                            Margin="5"
+                            BackgroundColor="DarkGray"
+                            SizeChanged="OnBorderSizeChanged">
+                        <Grid>
+                            <Label Text="{Binding Rank}"
+                                   TextColor="Black"
+                                   FontSize="24"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center"/>
+                            <Label Text="{Binding Name}"
+                                   TextColor="Black"
+                                   FontSize="24"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                        <Border.GestureRecognizers>
+                            <DragGestureRecognizer 
+                                    CanDrag="True"
+                                    DragStarting="OnDragStarting"
+                                    DragStartingCommandParameter="{Binding .}"
+                                    DropCompleted="OnDropCompleted"
+                                    />
+                            <DropGestureRecognizer
+                                AllowDrop="True"
+                                DragOver="OnDragOver"
+                                DragOverCommandParameter="{Binding .}"
+                                Drop="OnDrop"
+                                />
+
+
+                        </Border.GestureRecognizers>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button
+            Text="Bestellung aufgeben"/>
     </VerticalStackLayout>
 </ContentPage>
