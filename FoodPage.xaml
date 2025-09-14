@@ -33,11 +33,9 @@
                                     CanDrag="True"
                                     DragStarting="OnDragStarting"
                                     DragStartingCommandParameter="{Binding .}"
-                                    DropCompleted="OnDropCompleted"
                                     />
                             <DropGestureRecognizer
                                 AllowDrop="True"
-                                DragOver="OnDragOver"
                                 DragOverCommandParameter="{Binding .}"
                                 Drop="OnDrop"
                                 />
@@ -49,6 +47,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Button
-            Text="Bestellung aufgeben"/>
+            Text="Bestellung aufgeben"
+                Clicked="OnOrderButtonClicked"/>
     </VerticalStackLayout>
 </ContentPage>

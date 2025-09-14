@@ -1,10 +1,15 @@
-﻿using Microsoft.Maui.Animations;
+﻿using Board_Gamer_App.Resources.Values;
+using Microsoft.Maui.Animations;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace Board_Gamer_App;
 
 public partial class FoodPage : ContentPage
 {
     private List<Cuisine> _Cuisines = new();
+
+    private List<Menu> _Menus = new();
     public FoodPage()
     {
         InitializeComponent();
@@ -18,6 +23,9 @@ public partial class FoodPage : ContentPage
             new Cuisine("Deutsch", 5)
         };
 
+        _Menus = SaveManagement.XMLByteStreamToObject<List<Menu>>(MenusResources.Menus);
+
+
         CuisineList.ItemsSource = _Cuisines;
     }
 
@@ -30,15 +38,6 @@ public partial class FoodPage : ContentPage
         }
     }
 
-    public void OnDropCompleted(object sender, DropEventArgs e)
-    {
-
-    }
-
-    public void OnDragOver(object sender, DragEventArgs e)
-    {
-
-    }
     public void OnDrop(object sender, DropEventArgs e)
     {
         if (GetHoveredIndex(e, out int targetIndex))
@@ -76,7 +75,7 @@ public partial class FoodPage : ContentPage
 
         for (int i = 0; i < _Cuisines.Count(); i++)
         {
-            _Cuisines[i].Rank = i;
+            _Cuisines[i].Rank = i+1;
         }
     }
 
@@ -130,5 +129,15 @@ public partial class FoodPage : ContentPage
     {
         CuisineList.ItemsSource = null;
         CuisineList.ItemsSource = _Cuisines;
+    }
+
+    private string GetMostPopularChoice()
+    {
+        return _Cuisines[0].Name;
+    }
+
+    private void OnOrderButtonClicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new OrderPage(GetMostPopularChoice()));
     }
 }
