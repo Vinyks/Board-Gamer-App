@@ -28,23 +28,18 @@ public partial class StatusPage : ContentPage
     async void OnLateButtonClicked(object sender, EventArgs e)
     {
         StatusMessage.Text = "Verspätet";
+        string verspätungsGrund = await DisplayPromptAsync(
+            "Verspätung",
+            "Verspätungsgrund:",
+            "OK",
+            "Abbrechen",
+            "Grund...",
+            maxLength: 50
+            );
 #if ANDROID
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
-        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Verspätet sich");
+        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Verspätet sich: "+verspätungsGrund);
 #endif
-        await this.ShowPopupAsync(new Label
-        {
-            Text = "Status aktualisiert zu: Ich verspäte mich"
-        }, new PopupOptions
-        {
-            CanBeDismissedByTappingOutsideOfPopup = true,
-            Shape = new RoundRectangle
-            {
-                CornerRadius = new CornerRadius(20, 20, 20, 20),
-                StrokeThickness = 2,
-                Stroke = Colors.White
-            }
-        });
     }
 
     async void OnNotArrivingButtonClicked(object sender, EventArgs e)
@@ -54,18 +49,6 @@ public partial class StatusPage : ContentPage
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
         androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Kommt nicht");
 #endif
-        await this.ShowPopupAsync(new Label
-        {
-            Text = "Status aktualisiert zu: Ich komme nicht"
-        }, new PopupOptions
-        {
-            CanBeDismissedByTappingOutsideOfPopup = true,
-            Shape = new RoundRectangle
-            {
-                CornerRadius = new CornerRadius(20, 20, 20, 20),
-                StrokeThickness = 2,
-                Stroke = Colors.White
-            }
-        });
+        await DisplayAlert("Status Aktualisiert", "Ich komme nicht", "OK");
     }
 }

@@ -6,26 +6,37 @@
      
     <VerticalStackLayout>
         <ScrollView>
-            <ListView x:Name="TeilnehmerListe" SeparatorVisibility="None" ItemSelected="OnItemSelected" >
+            <ListView x:Name="TeilnehmerListe" ItemSelected="OnItemSelected" RowHeight="50">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Border Margin="1" Padding="10">
-                                <Grid>
-                                    <Label 
-                                        Text="PNG"
-                                        VerticalOptions="Center" 
-                                        HorizontalOptions="Start" />
-                                    <Label 
-                                        Text="{Binding Person}"
-                                        VerticalOptions="Center" 
-                                        HorizontalOptions="Center" />
-                                    <Label 
-                                        Text="{Binding Status}"
-                                        VerticalOptions="Center" 
-                                        HorizontalOptions="End" />
-                                </Grid>
-                            </Border>
+                            <Grid 
+                                RowDefinitions="*, *"
+                                ColumnDefinitions="50, auto">
+                                <Image 
+                                    Source="chess_pawn2.png"
+                                    Grid.Column="0"
+                                    Grid.RowSpan="2"
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center" />
+                                <Label 
+                                    Text="{Binding Person}"
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    VerticalOptions="End" 
+                                    HorizontalOptions="Start"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    TextColor="Black"/>
+                                <Label 
+                                    Text="{Binding Status}"
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    VerticalOptions="Start" 
+                                    HorizontalOptions="Start"
+                                    FontSize="14"
+                                    TextColor="CornflowerBlue"/>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

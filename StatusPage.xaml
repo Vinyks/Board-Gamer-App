@@ -10,26 +10,27 @@
                x:Name="StatusMessage"
                FontSize="Medium"
                VerticalOptions="Center" 
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center"
+               Margin="3"/>
 
         <Button Text="Ich bin pünktlich"
                 Clicked="OnOnTimeButtonClicked"
                 BackgroundColor="Green"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
-                Margin="2"/>
+                Margin="3"/>
         <Button Text="Ich verspäte mich" 
                 Clicked="OnLateButtonClicked"
                 BackgroundColor="DarkOrange"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
-                Margin="2"/>
+                Margin="3"/>
         <Button Text="Ich komme nicht"
                 Clicked="OnNotArrivingButtonClicked"
                 BackgroundColor="DarkRed"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
-                Margin="2"/>
+                Margin="3"/>
         
     </VerticalStackLayout>
 </ContentPage>
