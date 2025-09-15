@@ -1,6 +1,9 @@
 ﻿using Board_Gamer_App.Resources.Values;
+using Microsoft.Maui.Storage;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +13,35 @@ namespace Board_Gamer_App
 {
     public static class SaveManagement
     {
+        public class Entry
+        {
+            public string Key;
+            public Menu Value;
+            public Entry()
+            {
+            }
+
+            public Entry(string key, Menu value)
+            {
+                Key = key;
+                Value = value;
+            }
+        }
+
         public static T XMLByteStreamToObject<T>(Byte[] stream)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Menu>));
+            XmlSerializer serializer = new(typeof(T));
             Stream memoryStream = new MemoryStream(stream);
             return (T)serializer.Deserialize(memoryStream);
+        }
+        public static string ConvertObjectToXMLString<T>(T o)
+        {
+            XmlSerializer serializer = new(typeof(T));
+            StringWriter writer = new();
+
+            serializer.Serialize(writer, o);
+
+            return writer.ToString();
         }
 
         public static void SaveObjectAsXML<T>(string fileName, T o)
