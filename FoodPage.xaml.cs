@@ -16,12 +16,12 @@ public partial class FoodPage : ContentPage
         InitializeComponent();
 
         _Cuisines = new List<Cuisine> {
-            new Cuisine("Turkish", 0),
-            new Cuisine("Greek", 1),
-            new Cuisine("Italian", 2),
-            new Cuisine("Chinese", 3),
-            new Cuisine("Japanese", 4),
-            new Cuisine("German", 5)
+            new Cuisine("Turkish", 1),
+            new Cuisine("Greek", 2),
+            new Cuisine("Italian", 3),
+            new Cuisine("Chinese", 4),
+            new Cuisine("Japanese", 5),
+            new Cuisine("German", 6)
         };
 
         _Menus = MenuListToDictionary(SaveManagement.XMLByteStreamToObject<List<Menu>>(MenusResources.Menus));
