@@ -3,10 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Board_Gamer_App.OrderPage"
              Title="OrderPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label  x:Name="MenuName"
+                    FontSize="40"
+                    HorizontalOptions="Center"/>
+            <CollectionView ItemsLayout="VerticalGrid, 2" x:Name="ItemGrid">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0" 
+                              ColumnDefinitions="200"
+                              RowDefinitions="200">
+                            <Border HorizontalOptions="Fill"
+                                    VerticalOptions="Fill">
+                                <VerticalStackLayout VerticalOptions="Center">
+                                    <Label Text="{Binding Name}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           FontSize="24"/>
+                                    <Label Text="{Binding PriceDisplay}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           FontSize="24"/>
+                                    <HorizontalStackLayout VerticalOptions="End">
+                                        <Button Text="+"
+                                                Clicked="OnAddItemClicked"
+                                                CommandParameter="{Binding .}"/>
+                                        <Border>
+                                            <Label Text="{Binding Amount}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center"
+                                                   HorizontalTextAlignment="Center"
+                                                   MaximumWidthRequest="105"
+                                                   MinimumWidthRequest="105"/>
+                                        </Border>
+                                        <Button Text="-"
+                                                Clicked="OnRemoveItemClicked"
+                                                CommandParameter="{Binding .}"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label x:Name="Total"
+                   FontSize="30"
+                   HorizontalOptions="Center"/>
+            <Button Text="Bestellung Abschicken"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -1,6 +1,7 @@
 ﻿using Board_Gamer_App.Resources.Values;
-using Microsoft.Maui.Animations;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace Board_Gamer_App;
@@ -9,22 +10,21 @@ public partial class FoodPage : ContentPage
 {
     private List<Cuisine> _Cuisines = new();
 
-    private List<Menu> _Menus = new();
+    private Dictionary<string, List<Menu.Item>> _Menus = new();
     public FoodPage()
     {
         InitializeComponent();
 
         _Cuisines = new List<Cuisine> {
-            new Cuisine("Turkisch", 0),
-            new Cuisine("Griechisch", 1),
-            new Cuisine("Italienisch", 2),
-            new Cuisine("Chinesisch", 3),
-            new Cuisine("Japanisch", 4),
-            new Cuisine("Deutsch", 5)
+            new Cuisine("Turkish", 0),
+            new Cuisine("Greek", 1),
+            new Cuisine("Italian", 2),
+            new Cuisine("Chinese", 3),
+            new Cuisine("Japanese", 4),
+            new Cuisine("German", 5)
         };
 
-        _Menus = SaveManagement.XMLByteStreamToObject<List<Menu>>(MenusResources.Menus);
-
+        _Menus = MenuListToDictionary(SaveManagement.XMLByteStreamToObject<List<Menu>>(MenusResources.Menus));
 
         CuisineList.ItemsSource = _Cuisines;
     }
@@ -75,7 +75,7 @@ public partial class FoodPage : ContentPage
 
         for (int i = 0; i < _Cuisines.Count(); i++)
         {
-            _Cuisines[i].Rank = i+1;
+            _Cuisines[i].Rank = i + 1;
         }
     }
 
@@ -131,13 +131,29 @@ public partial class FoodPage : ContentPage
         CuisineList.ItemsSource = _Cuisines;
     }
 
-    private string GetMostPopularChoice()
+    private Menu GetMostPopularMenu()
+    {
+        string key = GetMostPopularChoiceString();
+        return new Menu(key, _Menus[key]);
+    }
+
+    private string GetMostPopularChoiceString()
     {
         return _Cuisines[0].Name;
     }
 
     private void OnOrderButtonClicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new OrderPage(GetMostPopularChoice()));
+        Navigation.PushAsync(new OrderPage(GetMostPopularMenu()));
+    }
+
+    private Dictionary<string, List<Menu.Item>> MenuListToDictionary(List<Menu> menus)
+    {
+        Dictionary<string, List<Menu.Item>> dictionary = new Dictionary<string, List<Menu.Item>>();
+        foreach (Menu menu in menus)
+        {
+            dictionary[menu.Name] = menu.Items;
+        }
+        return dictionary;
     }
 }

@@ -5,8 +5,16 @@
              Title="FoodPage">
     <VerticalStackLayout x:Name="MainLayout">
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Deine Essensrichtung Präferenz"
+            FontSize="24"
             VerticalOptions="Center" 
+            HorizontalTextAlignment="Center"
+            HorizontalOptions="Center" />
+        <Label
+            Text="(Drag and Drop)"
+            FontSize="16"
+            VerticalOptions="Center" 
+            HorizontalTextAlignment="Center"
             HorizontalOptions="Center" />
 
         <CollectionView x:Name="CuisineList" SelectionMode="None">
@@ -14,16 +22,17 @@
                 <DataTemplate>
                     <Border Padding="15"
                             Margin="5"
-                            BackgroundColor="DarkGray"
+                            BackgroundColor="#512BD4"
+                            StrokeShape="RoundRectangle 40,0,0,40"
                             SizeChanged="OnBorderSizeChanged">
                         <Grid>
                             <Label Text="{Binding Rank}"
-                                   TextColor="Black"
+                                   TextColor="White"
                                    FontSize="24"
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"/>
                             <Label Text="{Binding Name}"
-                                   TextColor="Black"
+                                   TextColor="White"
                                    FontSize="24"
                                    HorizontalOptions="End"
                                    VerticalOptions="Center"/>
@@ -48,6 +57,7 @@
         </CollectionView>
         <Button
             Text="Bestellung aufgeben"
-                Clicked="OnOrderButtonClicked"/>
+            Clicked="OnOrderButtonClicked"
+            Margin="20"/>
     </VerticalStackLayout>
 </ContentPage>
