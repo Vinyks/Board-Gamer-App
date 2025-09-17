@@ -43,6 +43,13 @@ namespace Board_Gamer_App
 
             return writer.ToString();
         }
+        public static T ConvertXMLStringToObject<T>(string objectString)
+        {
+            XmlSerializer serializer = new(typeof(T));
+            Stream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(objectString));
+
+            return (T)serializer.Deserialize(memoryStream);
+        }
 
         public static void SaveObjectAsXML<T>(string fileName, T o)
         {
