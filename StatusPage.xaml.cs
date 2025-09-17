@@ -17,12 +17,12 @@ public partial class StatusPage : ContentPage
 
     async void OnOnTimeButtonClicked(object sender, EventArgs e)
 	{
-        StatusMessage.Text = "P¸nktlich";
+        StatusMessage.Text = "PÅEktlich";
 #if ANDROID
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
-        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Ist p¸nktlich");
+        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Ist pÅEktlich");
 #endif
-        await DisplayAlert("Status Aktualisiert", "Ich bin p¸nktlich", "OK");
+        await DisplayAlert("Status Aktualisiert", "Ich bin pÅEktlich", "OK");
     }
 
     async void OnLateButtonClicked(object sender, EventArgs e)

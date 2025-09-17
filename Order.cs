@@ -25,6 +25,11 @@ namespace Board_Gamer_App
             _PriceDisplay = price.ToString("n2") + "€";
         }
 
+        public Order()
+        {
+
+        }
+
         public string Name { get => _Name; set => _Name = value; }
         public int ID { get => _ID; set => _ID = value; }
         public float Price { get => _Price; set => _Price = value; }

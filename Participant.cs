@@ -16,6 +16,10 @@ namespace Board_Gamer_App
             _Person = person;
             _Status = status;
         }
+        public Participant()
+        {
+
+        }
 
         public string Person { get => _Person; set => _Person = value; }
         public string Status { get => _Status; set => _Status = value; }

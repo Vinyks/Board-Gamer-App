@@ -16,6 +16,10 @@ namespace Board_Gamer_App
             _Name = name;
             _Rank = rank;
         }
+        public Cuisine()
+        {
+
+        }
 
         public string Name { get => _Name; set => _Name = value; }
         public int Rank { get => _Rank; set => _Rank = value; }
