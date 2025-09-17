@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Board_Gamer_App
 {
-    class Order
+    public class Order
     {
         private string _Name;
         private int _ID;

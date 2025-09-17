@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Board_Gamer_App
 {
-    class Cuisine
+    public class Cuisine
     {
         private string _Name;
         private int _Rank;

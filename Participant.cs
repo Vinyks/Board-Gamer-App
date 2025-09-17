@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Board_Gamer_App
 {
-    internal class Participant
+    public class Participant
     {
         private string _Person, _Status;
 

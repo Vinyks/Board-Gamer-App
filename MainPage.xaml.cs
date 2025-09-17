@@ -10,79 +10,18 @@ namespace Board_Gamer_App
     public partial class MainPage : ContentPage
     {
         //string Spieler = Android.App.Application.Context.GetString(Resource.String.);
-        private Appointment _NextTermin;
+        public static List<Appointment> FutureAppointments;
         private string _Player = PlayerData.PlayerName;
+        public static List<Appointment> PastItems, futureItems;
+
+
 
         public MainPage()
         {
             InitializeComponent();
-            var items = new List<Appointment>
-            {
-                new Appointment("Huber", new TimeOnly(18, 30), new DateOnly(2025,9,1)),
-                new Appointment("Müller", new TimeOnly(16, 45), new DateOnly(2025,9,4)),
-                new Appointment("Musterman", new TimeOnly(17, 00), new DateOnly(2025,9,8)),
-                new Appointment("Gleiss", new TimeOnly(19, 15), new DateOnly(2025,9,10)),
-                new Appointment("Huber", new TimeOnly(18, 30), new DateOnly(2025,9,16)),
-                new Appointment("Müller", new TimeOnly(17, 45), new DateOnly(2025,9,24)),
-                new Appointment("Musterman", new TimeOnly(18, 10), new DateOnly(2025,9,26)),
-                new Appointment("Gleiss", new TimeOnly(14, 25), new DateOnly(2025,9,30)),
 
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2025,9,1)),
-                new Appointment("Müller", new TimeOnly(12, 45), new DateOnly(2025,9,4)),
-                new Appointment("Musterman", new TimeOnly(14, 00), new DateOnly(2025,4,8)),
-                new Appointment("Gleiss", new TimeOnly(13, 15), new DateOnly(2025,6,10)),
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2025,2,16)),
-                new Appointment("Müller", new TimeOnly(10, 45), new DateOnly(2025,3,24)),
-                new Appointment("Musterman", new TimeOnly(13, 10), new DateOnly(2025,7,26)),
-                new Appointment("Gleiss", new TimeOnly(19, 25), new DateOnly(2025,1,30)),
-
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2026,9,1)),
-                new Appointment("Müller", new TimeOnly(12, 45), new DateOnly(2026,9,4)),
-                new Appointment("Musterman", new TimeOnly(14, 00), new DateOnly(2026,4,8)),
-                new Appointment("Gleiss", new TimeOnly(13, 15), new DateOnly(2026,6,10)),
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2026,2,16)),
-                new Appointment("Müller", new TimeOnly(10, 45), new DateOnly(2026,3,24)),
-                new Appointment("Musterman", new TimeOnly(13, 10), new DateOnly(2026,7,26)),
-                new Appointment("Gleiss", new TimeOnly(19, 25), new DateOnly(2026,1,30)),
-
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2026,9,1)),
-                new Appointment("Müller", new TimeOnly(12, 45), new DateOnly(2026,9,4)),
-                new Appointment("Musterman", new TimeOnly(14, 00), new DateOnly(2026,4,8)),
-                new Appointment("Gleiss", new TimeOnly(13, 15), new DateOnly(2026,6,10)),
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2026,2,16)),
-                new Appointment("Müller", new TimeOnly(10, 45), new DateOnly(2026,3,24)),
-                new Appointment("Musterman", new TimeOnly(13, 10), new DateOnly(2026,7,26)),
-                new Appointment("Gleiss", new TimeOnly(19, 25), new DateOnly(2026,1,30)),
-
-                new Appointment("Huber", new TimeOnly(17, 30), new DateOnly(2025,9,1)),
-                new Appointment("Müller", new TimeOnly(11, 45), new DateOnly(2025,9,4)),
-                new Appointment("Musterman", new TimeOnly(8, 00), new DateOnly(2025,9,8)),
-                new Appointment("Gleiss", new TimeOnly(9, 15), new DateOnly(2025,9,10)),
-                new Appointment("Huber", new TimeOnly(1, 30), new DateOnly(2025,9,16)),
-                new Appointment("Müller", new TimeOnly(3, 45), new DateOnly(2025,9,24)),
-                new Appointment("Musterman", new TimeOnly(4, 10), new DateOnly(2025,9,26)),
-                new Appointment("Gleiss", new TimeOnly(4, 25), new DateOnly(2025,9,30)),
-
-                new Appointment("Huber", new TimeOnly(17, 30), new DateOnly(2025,2,1)),
-                new Appointment("Müller", new TimeOnly(11, 45), new DateOnly(2025,2,4)),
-                new Appointment("Musterman", new TimeOnly(8, 00), new DateOnly(2025,2,8)),
-                new Appointment("Gleiss", new TimeOnly(9, 15), new DateOnly(2025,2,10)),
-                new Appointment("Huber", new TimeOnly(1, 30), new DateOnly(2025,2,16)),
-                new Appointment("Müller", new TimeOnly(3, 45), new DateOnly(2025,2,24)),
-                new Appointment("Musterman", new TimeOnly(4, 10), new DateOnly(2025,2,26)),
-                new Appointment("Gleiss", new TimeOnly(4, 25), new DateOnly(2025,3,30)),
-
-                new Appointment("Gleiss", new TimeOnly(20, 25), new DateOnly(2025,9,6)),
-                new Appointment("Gleiss", new TimeOnly(00, 00), new DateOnly(2025,9,6)),
-                new Appointment("Gleiss", new TimeOnly(14, 25), new DateOnly(2025,9,6)),
-            };
-            items = items.OrderBy(x => x.DateTime).ToList();
-            List<Appointment> pastItems, futureItems; 
-            (pastItems, futureItems) = SplitListByTime(items, DateTime.Now);
-
-            pastEventList.ItemsSource = pastItems;
+            pastEventList.ItemsSource = PastItems;
             presentEventList.ItemsSource = futureItems;
-
             ExecuteFunctionAfterDelay(1, () => ScrollView.ScrollToAsync(ScrollStack.Children[1] as Element, ScrollToPosition.Start, false));
 #if ANDROID
             AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
@@ -96,25 +35,6 @@ namespace Board_Gamer_App
             await Task.Delay((int)delayInSeconds*1000);
             function();
         }
-        private static Tuple<List<Appointment>,List<Appointment>> SplitListByTime(List<Appointment> events, DateTime spliTtime)
-        {
-            List<Appointment> pastEvents = new();
-            List<Appointment> futureEvents = new();
-
-            foreach(Appointment e in events)
-            {
-                if(e.DateTime < spliTtime)
-                {
-                    pastEvents.Add(e);
-                }
-                else
-                {
-                    futureEvents.Add(e);
-                }
-            }
-
-            return new Tuple<List<Appointment>, List<Appointment>>(pastEvents,futureEvents);
-        }
 
         private void CalculateLastItemInPast(List<Appointment> Termine)
         {
@@ -125,7 +45,6 @@ namespace Board_Gamer_App
                 if (Termine[i+1].DateTime > Termine[i].DateTime) lastIndex = i+1;
             }
             //Termine[lastIndex].IsFirstItemInFuture = true;
-            _NextTermin = Termine[lastIndex];
             //Trace.WriteLine(lastIndex);
         }
 

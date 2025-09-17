@@ -14,7 +14,9 @@ namespace Board_Gamer_App
         string _Datum;
         DateTime _DateTime;
         AppointmentStatusEnum _AppointmentStatus;
-
+        private List<Participant> _Participant;
+        List<Cuisine> _Cuisine;
+        List<Order> _Order;
 
         public enum AppointmentStatusEnum
         {
@@ -24,12 +26,20 @@ namespace Board_Gamer_App
             HoursPast,
         }
 
-        public Appointment(string name, TimeOnly uhrzeit, DateOnly datum)
+        public Appointment()
+        {
+
+        }
+
+        public Appointment(string name, TimeOnly uhrzeit, DateOnly datum, List<Participant> participant, List<Cuisine> cuisine, List<Order> order)
         {
             _Name = name;
             _Uhrzeit = uhrzeit.ToString("HH:mm");
             _Datum = datum.ToString("dd.MM.yyyy");
             _DateTime = new DateTime(datum, uhrzeit);
+            _Participant = participant;
+            _Cuisine = cuisine;
+            _Order = order;
         }
 
         public string Name { get => _Name; set => _Name = value; }
@@ -37,6 +47,9 @@ namespace Board_Gamer_App
         public string Datum { get => _Datum; set => _Datum = value; }
         public DateTime DateTime { get => _DateTime; set => _DateTime = value; }
         public AppointmentStatusEnum AppointmentStatus { get => _AppointmentStatus; set => _AppointmentStatus = value; }
+        public List<Participant> Participant { get => _Participant; set => _Participant = value; }
+        public List<Cuisine> Cuisine { get => _Cuisine; set => _Cuisine = value;}
+        public List<Order> Order { get => _Order; set => _Order = value; }
 
         public void UpdateAppointmentStatus()
         {
