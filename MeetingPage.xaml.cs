@@ -1,20 +1,27 @@
+
 namespace Board_Gamer_App;
 
 public partial class MeetingPage : ContentPage
 {
     private bool _StopCountdown;
 
-    public MeetingPage(Appointment t)
+    public MeetingPage()
     {
+        Appointment t = MainPage.SelectedAppointment;
         _StopCountdown = false;
         InitializeComponent();
-        Name.Text = t.Name;
-        Time.Text = t.Uhrzeit;
-        Date.Text = t.Datum;
-        Task.Run(() =>
-        UpdateTimer(t)
-        );
-
+        if (MainPage.SelectedAppointment != null)
+        {
+            Name.Text = t.Name;
+            Time.Text = t.Uhrzeit;
+            Date.Text = t.Datum;
+            Task.Run(() =>
+            UpdateTimer(t)
+            );
+        } else
+        {
+            TimeLeft.Text = "Ein Fehler ist aufgetreten";
+        }
     }
 
     private void UpdateTimer(Appointment a)
@@ -27,10 +34,10 @@ public partial class MeetingPage : ContentPage
             if (difference.Days == 0) difference = TimeSpan.FromMinutes(Math.Ceiling(difference.TotalMinutes));
             else difference = TimeSpan.FromDays(Math.Round(difference.TotalDays));
 
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    TimeLeft.Text = GetTimeString(difference, a.AppointmentStatus);
-                });
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                TimeLeft.Text = GetTimeString(difference, a.AppointmentStatus);
+            });
             if (a.AppointmentStatus == Appointment.AppointmentStatusEnum.Past) return; //Wenn Termin in der Vergangenheit liegt, Methode beenden.
             Task.Delay(1000).Wait();
         }
@@ -70,4 +77,5 @@ public partial class MeetingPage : ContentPage
     {
         NavigateToPage(sender, e, new FoodPage());
     }
+
 }

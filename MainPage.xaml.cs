@@ -10,7 +10,7 @@ namespace Board_Gamer_App
     public partial class MainPage : ContentPage
     {
         //string Spieler = Android.App.Application.Context.GetString(Resource.String.);
-        public static List<Appointment> FutureAppointments;
+        public static Appointment SelectedAppointment;
         private string _Player = PlayerData.PlayerName;
         public static List<Appointment> PastItems, futureItems;
 
@@ -68,9 +68,9 @@ namespace Board_Gamer_App
             
             if (view.SelectedItem != null)
             {
-                Appointment termin = (Appointment)view.SelectedItem;
+                SelectedAppointment = (Appointment)view.SelectedItem;
                 _LastTimeNavigated = DateTime.Now;
-                await Navigation.PushAsync(new MeetingPage(termin));
+                await Navigation.PushAsync(new MeetingPage());
             }
         }
 

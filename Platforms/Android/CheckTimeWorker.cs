@@ -6,10 +6,9 @@ namespace Board_Gamer_App.Platforms.Android
 {
     public class CheckTimeWorker : Worker
     {
-        //private Appointment _nextTermin = MainPage.FutureAppointments[0];
         private Appointment _NextAppointment;
+        //ggf. Bool WasSending, oder Worker nach einer Ausführung beenden lassen?
 
-        //Intervall + Zugriff auf Datum wichtig
         public CheckTimeWorker(Context context, WorkerParameters workerParams) : base(context, workerParams)
         {
         }
@@ -37,7 +36,7 @@ namespace Board_Gamer_App.Platforms.Android
                 
             {
                 AndroidNotification androidNotification = new("TimerAppointment", "AppointmentNotification", "Timer for checking next Appointment", NotificationImportance.Default);
-                androidNotification.DisplayNotification("MainPage", "Nächster Termin", "Der Spieleabend beginnt bald!");
+                androidNotification.DisplayNotification("MeetingPage", "Nächster Termin", "Der Spieleabend beginnt bald!");
 
             }
         }

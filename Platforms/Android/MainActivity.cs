@@ -10,6 +10,8 @@ namespace Board_Gamer_App
     [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
     public class MainActivity : MauiAppCompatActivity
     {
+        
+
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -99,7 +101,7 @@ namespace Board_Gamer_App
 
                 new Appointment("Gleiss", new TimeOnly(20, 25), new DateOnly(2025, 9, 6), participant, cuisines, orders),
                 new Appointment("Gleiss", new TimeOnly(00, 00), new DateOnly(2025, 9, 6), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(00, 55), new DateOnly(2025, 9, 18), participant, cuisines, orders),
+                new Appointment("Gleiss", new TimeOnly(01, 45), new DateOnly(2025, 9, 18), participant, cuisines, orders),
             };
             items = items.OrderBy(x => x.DateTime).ToList();
             List<Appointment> pastItems, futureItems;
@@ -141,6 +143,7 @@ namespace Board_Gamer_App
         {
             if(intent?.HasExtra("navigateTo") == true)
             {
+                MainPage.SelectedAppointment = SaveManagement.ReadObjectFromXML<Appointment>("NextAppointment.xml");
                 string targetPage = intent.GetStringExtra("navigateTo");
                 MainThread.BeginInvokeOnMainThread(async () =>
                 await Shell.Current.GoToAsync(targetPage)
