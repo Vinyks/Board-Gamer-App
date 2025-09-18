@@ -17,6 +17,7 @@ namespace Board_Gamer_App
         private List<Participant> _Participant;
         List<Cuisine> _Cuisine;
         List<Order> _Order;
+        bool _IsCuisineVoted = false;
 
         public enum AppointmentStatusEnum
         {
@@ -48,8 +49,9 @@ namespace Board_Gamer_App
         public DateTime DateTime { get => _DateTime; set => _DateTime = value; }
         public AppointmentStatusEnum AppointmentStatus { get => _AppointmentStatus; set => _AppointmentStatus = value; }
         public List<Participant> Participant { get => _Participant; set => _Participant = value; }
-        public List<Cuisine> Cuisine { get => _Cuisine; set => _Cuisine = value;}
+        public List<Cuisine> Cuisine { get => _Cuisine; set => _Cuisine = value; }
         public List<Order> Order { get => _Order; set => _Order = value; }
+        public bool IsCuisineVoted { get => _IsCuisineVoted; set => _IsCuisineVoted = value; }
 
         public void UpdateAppointmentStatus()
         {

@@ -9,7 +9,7 @@ namespace Board_Gamer_App.Platforms.Android
     {
         string _ChannelID, _ChannelName, _ChannelDescription;
         NotificationImportance _NotificationImportance;
-        int _RequestCode = 0, _Id=0;
+        static int _RequestCode = 0, _Id=0;
 
         public AndroidNotification(string channelID, string channelName, string channelDescription, NotificationImportance notificationImportance)
         {

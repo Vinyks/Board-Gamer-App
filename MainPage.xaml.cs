@@ -23,11 +23,6 @@ namespace Board_Gamer_App
             pastEventList.ItemsSource = PastItems;
             presentEventList.ItemsSource = futureItems;
             ExecuteFunctionAfterDelay(1, () => ScrollView.ScrollToAsync(ScrollStack.Children[1] as Element, ScrollToPosition.Start, false));
-#if ANDROID
-            AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
-            androidNotification.DisplayNotification("RatingPage","Test", "Ich teste gerade");
-            androidNotification.DisplayNotification("VotingPage", "Testerino", "Ich teste gerade");
-#endif
         }
 
         private async Task ExecuteFunctionAfterDelay(float delayInSeconds, Action function)

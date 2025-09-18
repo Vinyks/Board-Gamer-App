@@ -26,9 +26,9 @@ namespace Board_Gamer_App
         private void InitializeAppointments()
         {
             List<Participant> participant = new List<Participant>{
-                new Participant("Laura", "Kommt"),
-                new Participant("Willhelm", "Verspätung"),
-                new Participant("Dirk", "Kommt nicht")
+                new Participant("Laura", Participant.Statuses.Kommt),
+                new Participant("Willhelm", Participant.Statuses.Verspaetet),
+                new Participant("Dirk", Participant.Statuses.Verhindert)
             };
             List<Order> orders = new List<Order>
             {
@@ -101,7 +101,7 @@ namespace Board_Gamer_App
 
                 new Appointment("Gleiss", new TimeOnly(20, 25), new DateOnly(2025, 9, 6), participant, cuisines, orders),
                 new Appointment("Gleiss", new TimeOnly(00, 00), new DateOnly(2025, 9, 6), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(01, 45), new DateOnly(2025, 9, 18), participant, cuisines, orders),
+                new Appointment("Gleiss", new TimeOnly(12, 59), new DateOnly(2025, 9, 18), participant, cuisines, orders),
             };
             items = items.OrderBy(x => x.DateTime).ToList();
             List<Appointment> pastItems, futureItems;

@@ -9,12 +9,26 @@ namespace Board_Gamer_App
 {
     public class Participant
     {
-        private string _Person, _Status;
+        public enum Statuses
+        {
+            Kommt,
+            Verspaetet,
+            Verhindert
+        }
 
-        public Participant(string person, string status)
+        private string _Person, _StatusNachricht;
+        private Statuses _Status;
+
+        public Participant(string person, Statuses status)
         {
             _Person = person;
             _Status = status;
+            switch (_Status)
+            {
+                case Statuses.Kommt: _StatusNachricht = "Kommt"; break;
+                case Statuses.Verspaetet: _StatusNachricht = "Verspaetet"; break;
+                case Statuses.Verhindert: _StatusNachricht = "Verhindert"; break;
+            }
         }
         public Participant()
         {
@@ -22,6 +36,7 @@ namespace Board_Gamer_App
         }
 
         public string Person { get => _Person; set => _Person = value; }
-        public string Status { get => _Status; set => _Status = value; }
+        public string StatusNachricht { get => _StatusNachricht; set => _StatusNachricht = value; }
+        public Statuses Status { get => _Status; set => _Status = value; }
     }
 }

@@ -7,9 +7,9 @@ public partial class ParticipantPage : ContentPage
 		InitializeComponent();
         var Participant = new List<Participant>
             {
-                new Participant("Laura", "Kommt"),
-                new Participant("Willhelm", "Verspätung"),
-                new Participant("Dirk", "Kommt nicht")
+                new Participant("Laura", Board_Gamer_App.Participant.Statuses.Kommt),
+                new Participant("Willhelm", Board_Gamer_App.Participant.Statuses.Verspaetet),
+                new Participant("Dirk", Board_Gamer_App.Participant.Statuses.Verhindert)
             };
         TeilnehmerListe.ItemsSource = Participant;
     }
