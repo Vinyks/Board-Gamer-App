@@ -9,7 +9,7 @@
             Routing.RegisterRoute("ParticipantPage", typeof(ParticipantPage));
             Routing.RegisterRoute("RatingPage", typeof(RatingPage));
             Routing.RegisterRoute("VotingPage", typeof(VotingPage));
-            Routing.RegisterRoute("MeetingPage", typeof(MeetingPage));
+            Routing.RegisterRoute("AppointmentPage", typeof(AppointmentPage));
         }
     }
 }

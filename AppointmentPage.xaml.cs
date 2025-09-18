@@ -1,11 +1,11 @@
-
+ï»¿
 namespace Board_Gamer_App;
 
-public partial class MeetingPage : ContentPage
+public partial class AppointmentPage : ContentPage
 {
     private bool _StopCountdown;
 
-    public MeetingPage()
+    public AppointmentPage()
     {
         Appointment t = MainPage.SelectedAppointment;
         _StopCountdown = false;
@@ -43,7 +43,7 @@ public partial class MeetingPage : ContentPage
         }
     }
 
-    //GGF Umbenennen zu "UpdateGUI" und dann später Farben der Buttons Verändern (Grau=> Blockiert, Purple => Klickbar)
+    //GGF Umbenennen zu "UpdateGUI" und dann spÃ¤ter Farben der Buttons VerÃ¤ndern (Grau=> Blockiert, Purple => Klickbar)
     private static string GetTimeString(TimeSpan difference, Appointment.AppointmentStatusEnum appointmentStatus)
     {
         if (appointmentStatus == Appointment.AppointmentStatusEnum.DaysLeft) return string.Format("In {0} Tagen", difference.Days.ToString(), difference.Hours.ToString(), difference.Minutes.ToString());
