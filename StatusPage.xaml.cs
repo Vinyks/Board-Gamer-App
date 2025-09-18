@@ -17,20 +17,20 @@ public partial class StatusPage : ContentPage
 
     async void OnOnTimeButtonClicked(object sender, EventArgs e)
 	{
-        StatusMessage.Text = "PÅEktlich";
+        StatusMessage.Text = "PÅuenktlich";
 #if ANDROID
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
-        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Ist pÅEktlich");
+        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Ist pÅuenktlich");
 #endif
-        await DisplayAlert("Status Aktualisiert", "Ich bin pÅEktlich", "OK");
+        await DisplayAlert("Status Aktualisiert", "Ich bin pÅuenktlich", "OK");
     }
 
     async void OnLateButtonClicked(object sender, EventArgs e)
     {
-        StatusMessage.Text = "Versp‰tet";
-        string versp‰tungsGrund = await DisplayPromptAsync(
-            "Versp‰tung",
-            "Versp‰tungsgrund:",
+        StatusMessage.Text = "Verspaetet";
+        string verspaetungsGrund = await DisplayPromptAsync(
+            "Verspaetung",
+            "Verspaetungsgrund:",
             "OK",
             "Abbrechen",
             "Grund...",
@@ -38,7 +38,7 @@ public partial class StatusPage : ContentPage
             );
 #if ANDROID
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
-        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Versp‰tet sich: "+versp‰tungsGrund);
+        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Verspaetet sich: "+verspaetungsGrund);
 #endif
     }
 
