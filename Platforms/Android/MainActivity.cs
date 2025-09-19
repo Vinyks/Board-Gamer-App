@@ -10,8 +10,6 @@ namespace Board_Gamer_App
     [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
     public class MainActivity : MauiAppCompatActivity
     {
-        
-
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -25,92 +23,78 @@ namespace Board_Gamer_App
         }
         private void InitializeAppointments()
         {
-            List<Participant> participant = new List<Participant>{
-                new Participant("Laura", Participant.Statuses.Kommt),
-                new Participant("Willhelm", Participant.Statuses.Verspaetet),
-                new Participant("Dirk", Participant.Statuses.Verhindert)
-            };
-            List<Order> orders = new List<Order>
-            {
-                new Order("test12", 0, 5),
-                new Order("test123", 0, 5),
-                new Order("test1", 0, 5)
-            };
-            List<Cuisine> cuisines = new List<Cuisine>
-            {
-                new Cuisine("Italian", 1),
-                new Cuisine("Chinese", 1),
-                new Cuisine("Italian", 1),
-            };
+            List<Appointment> pastItems = GetPastAppointments().OrderBy(x => x.DateTime).ToList();
+            List<Appointment> futureItems = GetFutureAppointments().OrderBy(x => x.DateTime).ToList();
 
-            var items = new List<Appointment>
-            {
-                new Appointment("Huber", new TimeOnly(18, 30), new DateOnly(2025,9,1), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(16, 45), new DateOnly(2025,9,4), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(17, 00), new DateOnly(2025, 9, 8), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(19, 15), new DateOnly(2025, 9, 10), participant, cuisines, orders),
-                new Appointment("Huber", new TimeOnly(18, 30), new DateOnly(2025, 9, 16), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(17, 45), new DateOnly(2025, 9, 24), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(18, 10), new DateOnly(2025, 9, 26), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(14, 25), new DateOnly(2025, 9, 30), participant, cuisines, orders),
-
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2025, 9, 1), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(12, 45), new DateOnly(2025, 9, 4), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(14, 00), new DateOnly(2025, 4, 8), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(13, 15), new DateOnly(2025, 6, 10), participant, cuisines, orders),
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2025, 2, 16), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(10, 45), new DateOnly(2025, 3, 24), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(13, 10), new DateOnly(2025, 7, 26), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(19, 25), new DateOnly(2025, 1, 30), participant, cuisines, orders),
-
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2026, 9, 1), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(12, 45), new DateOnly(2026, 9, 4), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(14, 00), new DateOnly(2026, 4, 8), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(13, 15), new DateOnly(2026, 6, 10), participant, cuisines, orders),
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2026, 2, 16), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(10, 45), new DateOnly(2026, 3, 24), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(13, 10), new DateOnly(2026, 7, 26), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(19, 25), new DateOnly(2026, 1, 30), participant, cuisines, orders),
-
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2026, 9, 1), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(12, 45), new DateOnly(2026, 9, 4), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(14, 00), new DateOnly(2026, 4, 8), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(13, 15), new DateOnly(2026, 6, 10), participant, cuisines, orders),
-                new Appointment("Huber", new TimeOnly(14, 30), new DateOnly(2026, 2, 16), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(10, 45), new DateOnly(2026, 3, 24), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(13, 10), new DateOnly(2026, 7, 26), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(19, 25), new DateOnly(2026, 1, 30), participant, cuisines, orders),
-
-                new Appointment("Huber", new TimeOnly(17, 30), new DateOnly(2025, 9, 1), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(11, 45), new DateOnly(2025, 9, 4), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(8, 00), new DateOnly(2025, 9, 8), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(9, 15), new DateOnly(2025, 9, 10), participant, cuisines, orders),
-                new Appointment("Huber", new TimeOnly(1, 30), new DateOnly(2025, 9, 16), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(3, 45), new DateOnly(2025, 9, 24), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(4, 10), new DateOnly(2025, 9, 26), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(4, 25), new DateOnly(2025, 9, 30), participant, cuisines, orders),
-
-                new Appointment("Huber", new TimeOnly(17, 30), new DateOnly(2025, 2, 1), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(11, 45), new DateOnly(2025, 2, 4), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(8, 00), new DateOnly(2025, 2, 8), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(9, 15), new DateOnly(2025, 2, 10), participant, cuisines, orders),
-                new Appointment("Huber", new TimeOnly(1, 30), new DateOnly(2025, 2, 16), participant, cuisines, orders),
-                new Appointment("Müller", new TimeOnly(3, 45), new DateOnly(2025, 2, 24), participant, cuisines, orders),
-                new Appointment("Musterman", new TimeOnly(4, 10), new DateOnly(2025, 2, 26), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(4, 25), new DateOnly(2025, 3, 30), participant, cuisines, orders),
-
-                new Appointment("Gleiss", new TimeOnly(20, 25), new DateOnly(2025, 9, 6), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(00, 00), new DateOnly(2025, 9, 6), participant, cuisines, orders),
-                new Appointment("Gleiss", new TimeOnly(12, 59), new DateOnly(2025, 9, 18), participant, cuisines, orders),
-            };
-            items = items.OrderBy(x => x.DateTime).ToList();
-            List<Appointment> pastItems, futureItems;
-            (pastItems, futureItems) = SplitListByTime(items, DateTime.Now);
             SaveManagement.SaveObjectAsXML("NextAppointment.xml", futureItems[0]);
             MainPage.futureItems = futureItems;
             MainPage.PastItems = pastItems;
         }
 
+
+        private readonly string[] _CuisinesReadonly = ["Turkish", "Greek", "Italian", "Chinese", "Japanese", "German"];
+        private readonly string[] _PlayersReadonly = ["Huber", "Laura", "Willhelm", "Mustermann", "Gleiss", "Müller"];
+
+        private List<Appointment> GetFutureAppointments()
+        {
+            Appointment[] appointments = new Appointment[_PlayersReadonly.Length];
+            for(int i = 0; i < appointments.Length; i++)
+            {
+                int daysInTheFuture = DateTime.Now.Day + i * 7;
+
+                appointments[i] = new Appointment(_PlayersReadonly[i], new TimeOnly(18,00),
+                    new DateOnly(DateTime.Now.Year, DateTime.Now.Month + daysInTheFuture/29, daysInTheFuture%29), GetParticipants(), GetCuisines(), GetOrders());
+            }
+            return appointments.ToList();
+        }
+        private List<Participant> GetParticipants()
+        {
+            Participant[] participants = new Participant[_PlayersReadonly.Length];
+
+            for(int i = 0; i < _PlayersReadonly.Length; i++)
+            {
+                participants[i] = new Participant(_PlayersReadonly[i], Participant.Statuses.Kommt);
+            }
+
+            return participants.ToList();
+        }
+
+        private List<Cuisine> GetCuisines()
+        {
+            Cuisine[] cuisines = new Cuisine[_CuisinesReadonly.Length];
+
+            for (int i = 0; i < _CuisinesReadonly.Length; i++)
+            {
+                cuisines[i] = new Cuisine(_CuisinesReadonly[i], i);
+            }
+
+            return cuisines.ToList();
+        }
+
+        private List<Order> GetOrders()
+        {
+            Order[] orders = new Order[_CuisinesReadonly.Length];
+
+            for (int i = 0; i < _CuisinesReadonly.Length; i++)
+            {
+                orders[i] = new Order(0);
+            }
+
+            return orders.ToList();
+        }
+
+        private List<Appointment> GetPastAppointments()
+        {
+            Appointment[] appointments = new Appointment[25];
+
+            for (int i = 0; i < appointments.Length; i++)
+            {
+                appointments[i] = new Appointment();
+                appointments[i].Randomize();
+            }
+
+            return appointments.ToList();
+        }
 
         private static Tuple<List<Appointment>, List<Appointment>> SplitListByTime(List<Appointment> events, DateTime spliTtime)
         {
@@ -141,7 +125,7 @@ namespace Board_Gamer_App
 
         private void HandleIntent(Intent intent)
         {
-            if(intent?.HasExtra("navigateTo") == true)
+            if (intent?.HasExtra("navigateTo") == true)
             {
                 MainPage.SelectedAppointment = SaveManagement.ReadObjectFromXML<Appointment>("NextAppointment.xml");
                 string targetPage = intent.GetStringExtra("navigateTo");

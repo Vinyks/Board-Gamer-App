@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Board_Gamer_App
+﻿namespace Board_Gamer_App
 {
     public class Order
     {
@@ -24,6 +18,10 @@ namespace Board_Gamer_App
             _Amount = 0;
             _PriceDisplay = price.ToString("n2") + "€";
         }
+        public Order(int amount)
+        {
+            _Amount = amount;
+        }
 
         public Order()
         {
@@ -35,5 +33,14 @@ namespace Board_Gamer_App
         public float Price { get => _Price; set => _Price = value; }
         public int Amount { get => _Amount; set => _Amount = value; }
         public string PriceDisplay { get => _PriceDisplay; set => _PriceDisplay = value; }
+
+        public Order Randomize()
+        {
+            Random random = new Random();
+
+            _Amount = random.Next(0, 6);
+
+            return this;
+        }
     }
 }

@@ -25,10 +25,12 @@
             <Label x:Name="Date" 
                    Grid.Row="1" 
                    Grid.Column="0"
+				   Margin="10"
                    FontSize="Medium"/>
             <Label x:Name="Time" 
                    Grid.Row="1" 
                    Grid.Column="2" 
+				   Margin="10"
                    HorizontalTextAlignment="End"
                    FontSize="Medium"/>
             <Label x:Name="TimeLeft"
@@ -38,25 +40,43 @@
                    HorizontalTextAlignment="Center"
                    FontSize="Medium"/>
         </Grid>
-        <VerticalStackLayout VerticalOptions="Center" Spacing="20">
-            <HorizontalStackLayout HorizontalOptions="Center" Spacing="25">
-                <Button Text="Abstimmungen"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-                Clicked="OnVotingClicked"/>
-                <Button Text="Teilnehmer"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-                Clicked="OnParticipantsClicked"/>
-                <Button Text="Bewertung"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-                Clicked="OnRatingClicked"/>
-            </HorizontalStackLayout>
-            <Button Text="Essensübersicht"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-                Clicked="OnFoodClicked"/>
-        </VerticalStackLayout>
-    </Grid>
+		<Grid VerticalOptions="End" HorizontalOptions="Center" Margin="10" ColumnSpacing="10" RowSpacing="10">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="190" />
+				<RowDefinition Height="190" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="190" />
+				<ColumnDefinition Width="190" />
+			</Grid.ColumnDefinitions>
+			<Button Text="Abstimmungen"
+					Grid.Column="1"
+					Grid.Row="1"
+                    VerticalOptions="Fill" 
+                    HorizontalOptions="Fill"
+					FontSize="18"
+                    Clicked="OnVotingClicked"/>
+			<Button Text="Teilnehmer"
+					Grid.Column="1"
+					Grid.Row="0"
+                    VerticalOptions="Fill" 
+                    HorizontalOptions="Fill"
+					FontSize="18"
+                    Clicked="OnParticipantsClicked"/>
+			<Button Text="Bewertung"
+					Grid.Column="0"
+					Grid.Row="1"
+                    VerticalOptions="Fill" 
+                    HorizontalOptions="Fill"
+					FontSize="18"
+                    Clicked="OnRatingClicked"/>
+			<Button Text="Essensübersicht"
+					Grid.Column="0"
+					Grid.Row="0"
+                    VerticalOptions="Fill" 
+                    HorizontalOptions="Fill"
+					FontSize="18"
+                    Clicked="OnFoodClicked"/>
+		</Grid>
+	</Grid>
 </ContentPage>
