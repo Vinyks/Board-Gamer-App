@@ -7,13 +7,15 @@ public partial class VotingPage : ContentPage
     private bool _DeleteButtonVisible = false;
     private bool _VoteButtonVisible = true;
 
-    private Color _VotedColor = new Color(10,220,30);
-    private Color _NotVotedColor = new Color(248,249,250);
+    private Color _VotedColor = new Color(10, 220, 30);
+    private Color _NotVotedColor = new Color(248, 249, 250);
 
-    public VotingPage()
+    private Appointment _Appointment;
+    public VotingPage(Appointment appointment)
     {
+        _Appointment = appointment;
         InitializeComponent();
-        GamesCollectionView.ItemsSource = _BoardGames;
+        GamesCollectionView.ItemsSource = _Appointment.BoardGames;
     }
 
     private async void OnAddButtonClicked(object sender, EventArgs e)
@@ -26,8 +28,8 @@ public partial class VotingPage : ContentPage
             "Cancel",
             "Board game name...",
             maxLength: 50
-        ); 
-        
+        );
+
 
         // Check if user entered a name and didn't cancel
         if (!string.IsNullOrWhiteSpace(gameName))
@@ -40,7 +42,7 @@ public partial class VotingPage : ContentPage
     {
         if (sender is Button button && button.CommandParameter is BoardGame game)
         {
-            _BoardGames.Remove(game);
+            _Appointment.BoardGames.Remove(game);
 
             RefreshList();
         }
@@ -50,7 +52,7 @@ public partial class VotingPage : ContentPage
     {
         BoardGame game = new(gameName, _DeleteButtonVisible, _VoteButtonVisible, _VotedColor);
 
-        _BoardGames.Add(game);
+        _Appointment.BoardGames.Add(game);
 
         RefreshList();
     }
@@ -60,7 +62,7 @@ public partial class VotingPage : ContentPage
         _DeleteButtonVisible = !_DeleteButtonVisible;
         _VoteButtonVisible = !_DeleteButtonVisible;
 
-        foreach (BoardGame g in _BoardGames)
+        foreach (BoardGame g in _Appointment.BoardGames)
         {
             g.DeleteButtonVisible = _DeleteButtonVisible;
             g.VoteButtonVisible = _VoteButtonVisible;
@@ -83,6 +85,6 @@ public partial class VotingPage : ContentPage
     private void RefreshList()
     {
         GamesCollectionView.ItemsSource = null;
-        GamesCollectionView.ItemsSource = _BoardGames;
+        GamesCollectionView.ItemsSource = _Appointment.BoardGames;
     }
 }

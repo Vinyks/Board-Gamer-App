@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Board_Gamer_App
+﻿namespace Board_Gamer_App
 {
     public class BoardGame
     {
@@ -12,7 +6,7 @@ namespace Board_Gamer_App
         private bool _DeleteButtonVisible, _VoteButtonVisible;
         private Color _BorderColor;
         private bool _IsVoted;
-        public BoardGame(string name, bool deleteButtonVisible, bool voteButtonVisible, Color borderColor) 
+        public BoardGame(string name, bool deleteButtonVisible, bool voteButtonVisible, Color borderColor)
         {
             _Name = name;
             _DeleteButtonVisible = deleteButtonVisible;
@@ -21,6 +15,7 @@ namespace Board_Gamer_App
             _IsVoted = true;
         }
 
+        public BoardGame() { }
 
         public string Name { get => _Name; set => _Name = value; }
 

@@ -18,6 +18,15 @@
             _Amount = 0;
             _PriceDisplay = price.ToString("n2") + "€";
         }
+        public Order(string name, int id, float price, int amount)
+        {
+            _Name = name;
+            _ID = id;
+            _Price = price;
+            _Amount = amount;
+
+            _PriceDisplay = price.ToString("n2") + "€";
+        }
         public Order(int amount)
         {
             _Amount = amount;

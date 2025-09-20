@@ -6,7 +6,7 @@
      
     <VerticalStackLayout>
         <ScrollView>
-            <ListView x:Name="TeilnehmerListe" ItemSelected="OnItemSelected" RowHeight="50">
+            <ListView x:Name="ParticipantList" ItemSelected="OnItemSelected" RowHeight="50">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

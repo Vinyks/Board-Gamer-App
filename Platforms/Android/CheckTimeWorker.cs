@@ -46,7 +46,7 @@ namespace Board_Gamer_App.Platforms.Android
                 AndroidNotification androidNotification = new("TimerCuisine", "CuisineNotification", "Timer for remembering Cuisine", NotificationImportance.Default);
                 androidNotification.DisplayNotification("FoodPage", "Essensrichtungswahl", "Bitte wählen Sie die Essensrichtung!");
             }
-            foreach(Participant p in _NextAppointment.Participant)
+            foreach(Participant p in _NextAppointment.Participants)
             {
                 if (p.Status == Participant.Statuses.Verspaetet)
                 {

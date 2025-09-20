@@ -1,28 +1,35 @@
-﻿
-namespace Board_Gamer_App;
+﻿namespace Board_Gamer_App;
 
 public partial class AppointmentPage : ContentPage
 {
     private bool _StopCountdown;
 
-    public AppointmentPage()
+    private Appointment _Appointment;
+
+    public AppointmentPage(Appointment appointment)
     {
-        Appointment t = MainPage.SelectedAppointment;
+        _Appointment = appointment;
         _StopCountdown = false;
         InitializeComponent();
         if (MainPage.SelectedAppointment != null)
         {
-            Name.Text = t.Name;
-            Time.Text = t.Uhrzeit;
-            Date.Text = t.Datum;
+            Name.Text = _Appointment.Name;
+            Time.Text = _Appointment.Uhrzeit;
+            Date.Text = _Appointment.Datum;
             Task.Run(() =>
-            UpdateTimer(t)
+            UpdateTimer(_Appointment)
             );
-        } else
+        }
+        else
         {
             TimeLeft.Text = "Ein Fehler ist aufgetreten";
         }
     }
+
+    private bool GetVoteButtonActive(TimeSpan difference) => difference.TotalSeconds > 0;
+    private bool GetParticipantButtonActive(TimeSpan difference) => difference.TotalHours > -1;
+    private bool GetRatingButtonActive(TimeSpan difference) => difference.TotalDays > -30;
+    private bool GetFoodButtonActive(TimeSpan difference) => difference.TotalHours > 1;
 
     private void UpdateTimer(Appointment a)
     {
@@ -33,6 +40,11 @@ public partial class AppointmentPage : ContentPage
             TimeSpan difference = a.DateTime - now;
             if (difference.Days == 0) difference = TimeSpan.FromMinutes(Math.Ceiling(difference.TotalMinutes));
             else difference = TimeSpan.FromDays(Math.Round(difference.TotalDays));
+
+            VoteButton.IsEnabled = GetVoteButtonActive(difference);
+            ParticipantButton.IsEnabled = GetParticipantButtonActive(difference);
+            RatingButton.IsEnabled = GetRatingButtonActive(difference);
+            FoodButton.IsEnabled = GetFoodButtonActive(difference);
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
@@ -60,22 +72,22 @@ public partial class AppointmentPage : ContentPage
 
     public void OnVotingClicked(object sender, EventArgs e)
     {
-        NavigateToPage(sender, e, new VotingPage());
+        NavigateToPage(sender, e, new VotingPage(_Appointment));
     }
 
     public void OnParticipantsClicked(object sender, EventArgs e)
     {
-        NavigateToPage(sender, e, new ParticipantPage());
+        NavigateToPage(sender, e, new ParticipantPage(_Appointment));
     }
 
     public void OnRatingClicked(object sender, EventArgs e)
     {
-        NavigateToPage(sender, e, new RatingPage());
+        NavigateToPage(sender, e, new RatingPage(_Appointment));
     }
 
     public void OnFoodClicked(object sender, EventArgs e)
     {
-        NavigateToPage(sender, e, new FoodPage());
+        NavigateToPage(sender, e, new FoodPage(_Appointment));
     }
 
 }

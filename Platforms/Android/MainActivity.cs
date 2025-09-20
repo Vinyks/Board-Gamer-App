@@ -27,8 +27,8 @@ namespace Board_Gamer_App
             List<Appointment> futureItems = GetFutureAppointments().OrderBy(x => x.DateTime).ToList();
 
             SaveManagement.SaveObjectAsXML("NextAppointment.xml", futureItems[0]);
-            MainPage.futureItems = futureItems;
             MainPage.PastItems = pastItems;
+            MainPage.futureItems = futureItems;
         }
 
 
@@ -43,10 +43,22 @@ namespace Board_Gamer_App
                 int daysInTheFuture = DateTime.Now.Day + i * 7;
 
                 appointments[i] = new Appointment(_PlayersReadonly[i], new TimeOnly(18,00),
-                    new DateOnly(DateTime.Now.Year, DateTime.Now.Month + daysInTheFuture/29, daysInTheFuture%29), GetParticipants(), GetCuisines(), GetOrders());
+                    new DateOnly(DateTime.Now.Year, DateTime.Now.Month + daysInTheFuture/29, daysInTheFuture%29), 
+                    GetParticipants(), GetCuisines(), GetOrders(), new(), GetRatings());
             }
             return appointments.ToList();
         }
+
+        private List<Rating> GetRatings()
+        {
+            return new List<Rating>
+            {
+                new Rating("Wie war der Abend?", 0, 0),
+                new Rating("Wie war das Spiel?", 0, 1),
+                new Rating("Wie war das Essen?", 0, 2),
+            };
+        }
+
         private List<Participant> GetParticipants()
         {
             Participant[] participants = new Participant[_PlayersReadonly.Length];
@@ -65,7 +77,7 @@ namespace Board_Gamer_App
 
             for (int i = 0; i < _CuisinesReadonly.Length; i++)
             {
-                cuisines[i] = new Cuisine(_CuisinesReadonly[i], i);
+                cuisines[i] = new Cuisine(_CuisinesReadonly[i], i + 1);
             }
 
             return cuisines.ToList();
@@ -73,9 +85,9 @@ namespace Board_Gamer_App
 
         private List<Order> GetOrders()
         {
-            Order[] orders = new Order[_CuisinesReadonly.Length];
+            Order[] orders = new Order[8];
 
-            for (int i = 0; i < _CuisinesReadonly.Length; i++)
+            for (int i = 0; i < orders.Length; i++)
             {
                 orders[i] = new Order(0);
             }

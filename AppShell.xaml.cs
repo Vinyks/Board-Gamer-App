@@ -5,11 +5,11 @@
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("FoodPage", typeof(FoodPage));
-            Routing.RegisterRoute("ParticipantPage", typeof(ParticipantPage));
-            Routing.RegisterRoute("RatingPage", typeof(RatingPage));
-            Routing.RegisterRoute("VotingPage", typeof(VotingPage));
-            Routing.RegisterRoute("AppointmentPage", typeof(AppointmentPage));
+            Routing.RegisterRoute(nameof(FoodPage), typeof(FoodPage));
+            Routing.RegisterRoute(nameof(ParticipantPage), typeof(ParticipantPage));
+            Routing.RegisterRoute(nameof(RatingPage), typeof(RatingPage));
+            Routing.RegisterRoute(nameof(VotingPage), typeof(VotingPage));
+            Routing.RegisterRoute(nameof(AppointmentPage), typeof(AppointmentPage));
         }
     }
 }

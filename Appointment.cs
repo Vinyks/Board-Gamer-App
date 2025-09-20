@@ -10,6 +10,8 @@
         private List<Participant> _Participants;
         List<Cuisine> _Cuisines;
         List<Order> _Orders;
+        List<BoardGame> _BoardGames;
+        List<Rating> _Ratings;
         bool _IsCuisineVoted = false;
 
         public enum AppointmentStatusEnum
@@ -25,7 +27,7 @@
 
         }
 
-        public Appointment(string name, TimeOnly uhrzeit, DateOnly datum, List<Participant> participants, List<Cuisine> cuisines, List<Order> orders)
+        public Appointment(string name, TimeOnly uhrzeit, DateOnly datum, List<Participant> participants, List<Cuisine> cuisines, List<Order> orders, List<BoardGame> boardGames, List<Rating> ratings)
         {
             _Name = name;
             _Time = uhrzeit.ToString("HH:mm");
@@ -34,6 +36,8 @@
             _Participants = participants;
             _Cuisines = cuisines;
             _Orders = orders;
+            _BoardGames = boardGames;
+            _Ratings = ratings;
         }
 
         public string Name { get => _Name; set => _Name = value; }
@@ -41,10 +45,12 @@
         public string Datum { get => _Day; set => _Day = value; }
         public DateTime DateTime { get => _DateTime; set => _DateTime = value; }
         public AppointmentStatusEnum AppointmentStatus { get => _AppointmentStatus; set => _AppointmentStatus = value; }
-        public List<Participant> Participant { get => _Participants; set => _Participants = value; }
-        public List<Cuisine> Cuisine { get => _Cuisines; set => _Cuisines = value; }
-        public List<Order> Order { get => _Orders; set => _Orders = value; }
+        public List<Participant> Participants { get => _Participants; set => _Participants = value; }
+        public List<Cuisine> Cuisines { get => _Cuisines; set => _Cuisines = value; }
+        public List<Order> Orders { get => _Orders; set => _Orders = value; }
         public bool IsCuisineVoted { get => _IsCuisineVoted; set => _IsCuisineVoted = value; }
+        public List<BoardGame> BoardGames { get => _BoardGames; set => _BoardGames = value; }
+        internal List<Rating> Ratings { get => _Ratings; set => _Ratings = value; }
 
         public void UpdateAppointmentStatus()
         {
@@ -93,6 +99,15 @@
                 orders[i].Randomize();
             }
             _Orders = [.. orders];
+
+            _Ratings = new List<Rating>
+            {
+                new Rating("Wie war der Abend?", 0, 0),
+                new Rating("Wie war das Spiel?", 0, 1),
+                new Rating("Wie war das Essen?", 0, 2),
+            };
+
+            _BoardGames = new();
         }
     }
 }

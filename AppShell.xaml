@@ -6,9 +6,8 @@
     xmlns:local="clr-namespace:Board_Gamer_App"
     Title="Board_Gamer_App">
 
-    <ShellContent
-        Title="Home"
+	<ShellContent
+        Title="BoardGamerApp"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-
 </Shell>

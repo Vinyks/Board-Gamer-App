@@ -46,16 +46,16 @@ namespace Board_Gamer_App
         private async void HandleSelectionNavigation()
         {
             if(NavigationAllowed)
-                await NavigateToEvent(presentEventList);
+                await NavigateToAppointment(presentEventList);
             if (NavigationAllowed)
-                await NavigateToEvent(pastEventList);
+                await NavigateToAppointment(pastEventList);
         }
 
         private DateTime _LastTimeNavigated;
 
         //Is true if a request to navigate has been made in the last 0.5 seconds
         private bool NavigationAllowed => ((DateTime.Now - _LastTimeNavigated).TotalSeconds > 0.5f);
-        private async Task NavigateToEvent(ListView view)
+        private async Task NavigateToAppointment(ListView view)
         {
             //Stops User from clicking on two items at the same time
             if (!NavigationAllowed) return;
@@ -65,8 +65,15 @@ namespace Board_Gamer_App
             {
                 SelectedAppointment = (Appointment)view.SelectedItem;
                 _LastTimeNavigated = DateTime.Now;
-                await Navigation.PushAsync(new AppointmentPage());
+                await Navigation.PushAsync(new AppointmentPage(SelectedAppointment));
             }
+        }
+
+        protected override void OnNavigatedTo(NavigatedToEventArgs args)
+        {
+
+
+            base.OnNavigatedTo(args);
         }
 
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

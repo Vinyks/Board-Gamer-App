@@ -1,8 +1,4 @@
 ﻿using Board_Gamer_App.Resources.Values;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Xml.Serialization;
 
 namespace Board_Gamer_App;
 
@@ -11,18 +7,15 @@ public partial class FoodPage : ContentPage
     private List<Cuisine> _Cuisines = new();
 
     private Dictionary<string, List<Menu.Item>> _Menus = new();
-    public FoodPage()
+
+    private Appointment _Appointment;
+    public FoodPage(Appointment appointment)
     {
+        _Appointment = appointment;
+
         InitializeComponent();
 
-        _Cuisines = new List<Cuisine> {
-            new Cuisine("Turkish", 1),
-            new Cuisine("Greek", 2),
-            new Cuisine("Italian", 3),
-            new Cuisine("Chinese", 4),
-            new Cuisine("Japanese", 5),
-            new Cuisine("German", 6)
-        };
+        _Cuisines = appointment.Cuisines;
 
         _Menus = MenuListToDictionary(SaveManagement.XMLByteStreamToObject<List<Menu>>(MenusResources.Menus));
 
@@ -144,7 +137,7 @@ public partial class FoodPage : ContentPage
 
     private void OnOrderButtonClicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new OrderPage(GetMostPopularMenu()));
+        Navigation.PushAsync(new OrderPage(_Appointment, GetMostPopularMenu()));
     }
 
     private Dictionary<string, List<Menu.Item>> MenuListToDictionary(List<Menu> menus)

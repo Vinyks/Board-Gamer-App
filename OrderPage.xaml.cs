@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+using System.Collections.ObjectModel;
 
 namespace Board_Gamer_App;
 
@@ -6,24 +7,34 @@ public partial class OrderPage : ContentPage
 {
     private ObservableCollection<Order> _Orders = new();
 
-    public OrderPage(Menu menu)
+    private Appointment _CurrentLoadedAppointment;
+
+    public OrderPage(Appointment appointment, Menu menu)
     {
         InitializeComponent();
 
+        _CurrentLoadedAppointment = appointment;
         _Orders = GenerateOrderListFromMenu(menu);
 
         ItemGrid.ItemsSource = _Orders;
         MenuName.Text = menu.Name;
+        UpdateTotal();
     }
+    protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
+    {
+        _CurrentLoadedAppointment.Orders = _Orders.ToList();
+        SaveManagement.SaveObjectAsXML("NextAppointment.xml", _CurrentLoadedAppointment);
 
+        base.OnNavigatedFrom(args);
+    }
     private ObservableCollection<Order> GenerateOrderListFromMenu(Menu menu)
     {
-        ObservableCollection<Order> orders = new();
+        ObservableCollection<Order> orders = _CurrentLoadedAppointment.Orders.ToObservableCollection();
 
-        for (int i = 0; i < menu.Items.Count; i++)
+        for (int i = 0; i < orders.Count; i++)
         {
             Menu.Item item = menu.Items[i];
-            orders.Add(new Order(item.Name, i, item.Price));
+            orders[i] = new Order(item.Name, i, item.Price, _CurrentLoadedAppointment.Orders[i].Amount);
         }
 
         return orders;
@@ -41,6 +52,7 @@ public partial class OrderPage : ContentPage
             _Orders[order.ID] = o;
 
             UpdateTotal();
+
         }
     }
 
@@ -56,6 +68,7 @@ public partial class OrderPage : ContentPage
             _Orders[order.ID] = o;
 
             UpdateTotal();
+
             ItemGrid.SelectedItem = null;
         }
     }

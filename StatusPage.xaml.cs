@@ -1,4 +1,4 @@
-using CommunityToolkit.Maui;
+﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.Controls.Shapes;
@@ -10,32 +10,45 @@ namespace Board_Gamer_App;
 
 public partial class StatusPage : ContentPage
 {
-    public StatusPage()
+    private Appointment _CurrentLoadedAppointment;
+    private Participant _Participant;
+
+    public StatusPage(Appointment appointment, Participant participant)
 	{
-		InitializeComponent();
+        _CurrentLoadedAppointment = appointment;
+        _Participant = participant;
+
+        InitializeComponent();
+        StatusMessage.Text = _Messages[(int)participant.Status];
     }
+
+    private string[] _Messages = ["Pünktlich", "Verspätet", "Kommt nicht"];
 
     async void OnOnTimeButtonClicked(object sender, EventArgs e)
 	{
-        StatusMessage.Text = "P�uenktlich";
+        StatusMessage.Text = "Pünktlich";
+        _Participant.Status = Participant.Statuses.Kommt;
+        _Participant.StatusNachricht = _Messages[(int)_Participant.Status];
 #if ANDROID
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
-        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Ist p�uenktlich");
+        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Ist p「enktlich");
 #endif
-        await DisplayAlert("Status Aktualisiert", "Ich bin p�uenktlich", "OK");
+        await DisplayAlert("Status Aktualisiert", "Ich bin pünktlich", "OK");
     }
 
     async void OnLateButtonClicked(object sender, EventArgs e)
     {
-        StatusMessage.Text = "Verspaetet";
+        StatusMessage.Text = "Verspätet";
         string verspaetungsGrund = await DisplayPromptAsync(
-            "Verspaetung",
-            "Verspaetungsgrund:",
+            "Verspätung",
+            "Verspätungsgrund:",
             "OK",
             "Abbrechen",
             "Grund...",
             maxLength: 50
             );
+        _Participant.Status = Participant.Statuses.Verspaetet;
+        _Participant.StatusNachricht = _Messages[(int)_Participant.Status];
 #if ANDROID
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
         androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Verspaetet sich: "+verspaetungsGrund);
@@ -45,6 +58,8 @@ public partial class StatusPage : ContentPage
     async void OnNotArrivingButtonClicked(object sender, EventArgs e)
     {
         StatusMessage.Text = "Kommt nicht";
+        _Participant.Status = Participant.Statuses.Verhindert;
+        _Participant.StatusNachricht = _Messages[(int)_Participant.Status];
 #if ANDROID
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
         androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Kommt nicht");
