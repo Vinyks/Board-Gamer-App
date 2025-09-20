@@ -28,7 +28,7 @@ public partial class AppointmentPage : ContentPage
 
     private bool GetVoteButtonActive(TimeSpan difference) => difference.TotalSeconds > 0;
     private bool GetParticipantButtonActive(TimeSpan difference) => difference.TotalHours > -1;
-    private bool GetRatingButtonActive(TimeSpan difference) => difference.TotalDays > -30;
+    private bool GetRatingButtonActive(TimeSpan difference) => difference.TotalDays > -30 && difference.TotalDays < 0;
     private bool GetFoodButtonActive(TimeSpan difference) => difference.TotalHours > 1;
 
     private void UpdateTimer(Appointment a)
