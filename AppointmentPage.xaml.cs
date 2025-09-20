@@ -77,7 +77,7 @@ public partial class AppointmentPage : ContentPage
 
     public void OnParticipantsClicked(object sender, EventArgs e)
     {
-        NavigateToPage(sender, e, new ParticipantPage());
+        NavigateToPage(sender, e, new ParticipantPage(_Appointment));
     }
 
     public void OnRatingClicked(object sender, EventArgs e)
