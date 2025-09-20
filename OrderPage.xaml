@@ -19,6 +19,7 @@
                                 <VerticalStackLayout VerticalOptions="Center">
                                     <Label Text="{Binding Name}"
                                            HorizontalOptions="Center"
+										   HorizontalTextAlignment="Center"
                                            VerticalOptions="Center"
                                            FontSize="24"/>
                                     <Label Text="{Binding PriceDisplay}"
@@ -39,6 +40,7 @@
                                         </Border>
                                         <Button Text="-"
                                                 Clicked="OnRemoveItemClicked"
+												VerticalOptions="End"
                                                 CommandParameter="{Binding .}"/>
                                     </HorizontalStackLayout>
                                 </VerticalStackLayout>
