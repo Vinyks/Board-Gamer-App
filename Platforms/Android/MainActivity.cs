@@ -15,7 +15,6 @@ namespace Board_Gamer_App
             base.OnCreate(savedInstanceState);
             HandleIntent(Intent);
             InitializeAppointments();
-            Data inputData = new Data.Builder().PutString("a", "b").Build();
             OneTimeWorkRequest oneTimeCheck = OneTimeWorkRequest.Builder.From<CheckTimeWorker>().Build();
             WorkManager.GetInstance(this).Enqueue(oneTimeCheck);
             PeriodicWorkRequest workerRequest = PeriodicWorkRequest.Builder.From<CheckTimeWorker>(TimeSpan.FromMinutes(15)).Build();
