@@ -65,11 +65,12 @@
         }
 
         private readonly string[] _CuisinesReadonly = ["Turkish", "Greek", "Italian", "Chinese", "Japanese", "German"];
+        private readonly string[] _PlayersReadonly = ["Huber", "Laura", "Willhelm", "Mustermann", "Gleiss", "Müller"];
         public void Randomize()
         {
             Random random = new();
 
-            _Name = "Random";
+            _Name = _PlayersReadonly[random.Next(0, _PlayersReadonly.Length)];
             TimeOnly time = new TimeOnly(random.Next(0, 24), 5 * random.Next(0, 12));
             DateOnly date = new DateOnly(2025,random.Next(1, 9), random.Next(1, 29));
             _Day = date.ToString("dd.MM.yyyy");
