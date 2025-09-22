@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Board_Gamer_App.FoodPage"
-             Title="FoodPage">
+             Title="FoodPage"
+			 BackgroundColor="#e6904e"
+			 Shell.BackgroundColor="#9e4539"
+			 Shell.TitleColor="#e6904e">
+	
     <VerticalStackLayout x:Name="MainLayout">
         <Label 
             Text="Deine Essensrichtung Präferenz"
@@ -22,8 +26,9 @@
                 <DataTemplate>
                     <Border Padding="15"
                             Margin="5"
-                            BackgroundColor="#512BD4"
-                            StrokeShape="RoundRectangle 40,0,0,40"
+                            BackgroundColor="#9e4539"
+                            StrokeShape="RoundRectangle 20,20,20,20"
+							Stroke="#fbb954"
                             SizeChanged="OnBorderSizeChanged">
                         <Grid>
                             <Label Text="{Binding Rank}"
@@ -58,6 +63,7 @@
         <Button
             Text="Bestellung aufgeben"
             Clicked="OnOrderButtonClicked"
+			BackgroundColor="#9e4539"
             Margin="20"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -6,12 +6,12 @@
 
     <ScrollView x:Name="ScrollView">
         <VerticalStackLayout x:Name="ScrollStack">
-            <ListView x:Name="pastEventList" ItemSelected="OnItemSelected" SeparatorVisibility="None" BackgroundColor="DarkGray">
+			<ListView x:Name="pastEventList" ItemSelected="OnItemSelected" SeparatorVisibility="None" BackgroundColor="#9e4539">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
-                                <Grid 
+								<Grid
                                     Padding="10"
                                     Margin="-5">
                                     <Grid.RowDefinitions>
@@ -28,15 +28,18 @@
                                     <Label Text="{Binding Datum}"
                                     Grid.Column="1"
                                     FontAttributes="Bold"
+									TextColor="LightGray"
                                     HorizontalOptions="Start"
                                     VerticalOptions="Center"/>
                                     <Label Text="{Binding Uhrzeit}"
                                     Grid.Column="1"
+									TextColor="LightGray"
                                     HorizontalOptions="End"
                                     VerticalOptions="Center"/>
                                     <Label Text="{Binding Name}"
                                     Grid.Column="1"
                                     Grid.Row="2"
+									TextColor="LightGray"
                                     VerticalOptions="Center"/>
                                 </Grid>
                             </Grid>
@@ -47,9 +50,9 @@
             <BoxView HeightRequest="10"
                 WidthRequest="1000"
                 VerticalOptions="End"
-                Color="Gray"
+                Color="#7a3045"
                 />
-            <ListView x:Name="presentEventList" ItemSelected="OnItemSelected" SeparatorVisibility="None">
+			<ListView x:Name="presentEventList" ItemSelected="OnItemSelected" SeparatorVisibility="None" BackgroundColor="#e6904e">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

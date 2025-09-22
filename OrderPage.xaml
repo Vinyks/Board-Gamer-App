@@ -2,43 +2,51 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Board_Gamer_App.OrderPage"
-             Title="OrderPage">
+             Title="OrderPage"
+			 BackgroundColor="#e6904e"
+			 Shell.BackgroundColor="#9e4539"
+			 Shell.TitleColor="#e6904e">
     <ScrollView>
         <VerticalStackLayout>
             <Label  x:Name="MenuName"
                     FontSize="40"
                     HorizontalOptions="Center"/>
-            <CollectionView ItemsLayout="VerticalGrid, 2" x:Name="ItemGrid">
+            <CollectionView ItemsLayout="VerticalGrid, 2" x:Name="ItemGrid" Margin="5">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="0" 
-                              ColumnDefinitions="200"
+                        <Grid ColumnDefinitions="200"
                               RowDefinitions="200">
                             <Border HorizontalOptions="Fill"
-                                    VerticalOptions="Fill">
+                                    VerticalOptions="Fill"
+									StrokeShape="RoundRectangle 10,10,10,10"
+									Stroke="#9e4539"
+									StrokeThickness="4">
                                 <VerticalStackLayout VerticalOptions="Center">
                                     <Label Text="{Binding Name}"
                                            HorizontalOptions="Center"
+										   HorizontalTextAlignment="Center"
                                            VerticalOptions="Center"
                                            FontSize="24"/>
                                     <Label Text="{Binding PriceDisplay}"
                                            HorizontalOptions="Center"
                                            VerticalOptions="Center"
                                            FontSize="24"/>
-                                    <HorizontalStackLayout VerticalOptions="End">
+                                    <HorizontalStackLayout VerticalOptions="End" HorizontalOptions="Center">
                                         <Button Text="+"
                                                 Clicked="OnAddItemClicked"
                                                 CommandParameter="{Binding .}"/>
-                                        <Border>
+										<Border Stroke="#9e4539" StrokeThickness="4" StrokeShape="RoundRectangle 10,10,10,10">
                                             <Label Text="{Binding Amount}"
                                                    VerticalOptions="Center"
                                                    HorizontalOptions="Center"
                                                    HorizontalTextAlignment="Center"
-                                                   MaximumWidthRequest="105"
-                                                   MinimumWidthRequest="105"/>
+                                                   MaximumWidthRequest="90"
+                                                   MinimumWidthRequest="105"
+												   FontSize="Large"/>
                                         </Border>
                                         <Button Text="-"
                                                 Clicked="OnRemoveItemClicked"
+												VerticalOptions="End"
                                                 CommandParameter="{Binding .}"/>
                                     </HorizontalStackLayout>
                                 </VerticalStackLayout>
@@ -50,7 +58,9 @@
             <Label x:Name="Total"
                    FontSize="30"
                    HorizontalOptions="Center"/>
-            <Button Text="Bestellung Abschicken"/>
+			<Button Text="Bestellung Abschicken"
+					FontSize="Large"
+				   BackgroundColor="#9e4539"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

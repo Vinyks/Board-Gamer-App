@@ -1,6 +1,5 @@
-using Board_Gamer_App.Resources.Values;
+ï»¿using Board_Gamer_App.Resources.Values;
 using CommunityToolkit.Maui.Core.Extensions;
-using System.Collections.ObjectModel;
 
 namespace Board_Gamer_App;
 
@@ -8,10 +7,24 @@ public partial class ParticipantPage : ContentPage
 {
     private Appointment _Appointment;
 
-    public ParticipantPage()
-	{
-        _Appointment = MainPage.SelectedAppointment;
+    public ParticipantPage(Appointment appointment)
+    {
+        _Appointment = appointment;
 
+        for (int i = 0; i < _Appointment.Participants.Count; i++)
+        {
+
+            if (_Appointment.Name == _Appointment.Participants[i].Person)
+            {
+                _Appointment.Participants[i].IsKing = true;
+                _Appointment.Participants[i].IsPawn = false;
+            }
+            else 
+            {
+                _Appointment.Participants[i].IsKing = false;
+                _Appointment.Participants[i].IsPawn = true;
+            }
+        }
         InitializeComponent();
         ParticipantList.ItemsSource = _Appointment.Participants.ToObservableCollection();
     }
@@ -25,7 +38,7 @@ public partial class ParticipantPage : ContentPage
     private async void NavigateToSchedule(object sender, EventArgs e)
     {
         Participant participant = (Participant)ParticipantList.SelectedItem;
-        if (participant.Person == PlayerData.PlayerName && participant.Person != _Appointment.Name) //Nur der tatsächliche Spieler darf sich verspätet melden && nicht der Gastgeber
+        if (participant.Person == PlayerData.PlayerName && participant.Person != _Appointment.Name) //Nur der tatsÃ¤chliche Spieler darf sich verspèˆ©et melden && nicht der Gastgeber
         {
             await Navigation.PushAsync(new StatusPage(_Appointment, participant));
         }

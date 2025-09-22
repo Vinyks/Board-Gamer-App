@@ -39,11 +39,13 @@ namespace Board_Gamer_App
             Appointment[] appointments = new Appointment[_PlayersReadonly.Length];
             for(int i = 0; i < appointments.Length; i++)
             {
-                int daysInTheFuture = DateTime.Now.Day + i * 7;
+                int daysInTheFuture = i * 7;
+
+                DateOnly dateOnly = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                dateOnly = dateOnly.AddDays(daysInTheFuture);
 
                 appointments[i] = new Appointment(_PlayersReadonly[i], new TimeOnly(18,00),
-                    new DateOnly(DateTime.Now.Year, DateTime.Now.Month + daysInTheFuture/29, daysInTheFuture%29), 
-                    GetParticipants(), GetCuisines(), GetOrders(), new(), GetRatings());
+                    dateOnly, HostOnTop(GetParticipants(), _PlayersReadonly[i]), GetCuisines(), GetOrders(), new(), GetRatings());
             }
             return appointments.ToList();
         }
@@ -68,6 +70,20 @@ namespace Board_Gamer_App
             }
 
             return participants.ToList();
+        }
+
+        private List<Participant> HostOnTop(List<Participant> participants, string hostName)
+        {
+            List<Participant> partipants = participants.ToList();
+            for (int i = 0; i < partipants.Count(); i++)
+            {
+                if (hostName == partipants[i].Person)
+                {
+                    (partipants[i], partipants[0]) = (partipants[0], partipants[i]);
+                }
+            }
+
+            return partipants;
         }
 
         private List<Cuisine> GetCuisines()

@@ -28,7 +28,7 @@ public partial class AppointmentPage : ContentPage
 
     private bool GetVoteButtonActive(TimeSpan difference) => difference.TotalSeconds > 0;
     private bool GetParticipantButtonActive(TimeSpan difference) => difference.TotalHours > -1;
-    private bool GetRatingButtonActive(TimeSpan difference) => difference.TotalDays > -30;
+    private bool GetRatingButtonActive(TimeSpan difference) => difference.TotalDays > -30 && difference.TotalDays < 0;
     private bool GetFoodButtonActive(TimeSpan difference) => difference.TotalHours > 1;
 
     private void UpdateTimer(Appointment a)
@@ -40,11 +40,8 @@ public partial class AppointmentPage : ContentPage
             TimeSpan difference = a.DateTime - now;
             if (difference.Days == 0) difference = TimeSpan.FromMinutes(Math.Ceiling(difference.TotalMinutes));
             else difference = TimeSpan.FromDays(Math.Round(difference.TotalDays));
-
-            VoteButton.IsEnabled = GetVoteButtonActive(difference);
-            ParticipantButton.IsEnabled = GetParticipantButtonActive(difference);
-            RatingButton.IsEnabled = GetRatingButtonActive(difference);
-            FoodButton.IsEnabled = GetFoodButtonActive(difference);
+            
+            UpdateAllButtons(difference);
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
@@ -53,6 +50,29 @@ public partial class AppointmentPage : ContentPage
             if (a.AppointmentStatus == Appointment.AppointmentStatusEnum.Past) return; //Wenn Termin in der Vergangenheit liegt, Methode beenden.
             Task.Delay(1000).Wait();
         }
+    }
+
+    private readonly Color ACTIVEBUTTONCOLOR = Color.FromArgb("#9e4539");
+    private readonly Color UNACTIVEBUTTONCOLOR = Color.FromArgb("#7a3045");
+
+    private void UpdateAllButtons(TimeSpan difference)
+    {
+        VoteButton.IsEnabled = GetVoteButtonActive(difference);
+        VoteButton.BackgroundColor = GetVoteButtonActive(difference) ? ACTIVEBUTTONCOLOR : UNACTIVEBUTTONCOLOR;
+        VoteButton.TextColor = Color.FromArgb("#FFFFFF");
+
+        ParticipantButton.IsEnabled = GetParticipantButtonActive(difference);
+        ParticipantButton.BackgroundColor = GetParticipantButtonActive(difference) ? ACTIVEBUTTONCOLOR : UNACTIVEBUTTONCOLOR;
+        ParticipantButton.TextColor = Color.FromArgb("#FFFFFF");
+
+        RatingButton.IsEnabled = GetRatingButtonActive(difference);
+        RatingButton.BackgroundColor = GetRatingButtonActive(difference) ? ACTIVEBUTTONCOLOR : UNACTIVEBUTTONCOLOR;
+        RatingButton.TextColor = Color.FromArgb("#FFFFFF");
+
+        FoodButton.IsEnabled = GetFoodButtonActive(difference);
+        FoodButton.BackgroundColor = GetFoodButtonActive(difference) ? ACTIVEBUTTONCOLOR : UNACTIVEBUTTONCOLOR;
+        FoodButton.TextColor = Color.FromArgb("#FFFFFF");
+
     }
 
     //GGF Umbenennen zu "UpdateGUI" und dann später Farben der Buttons Verändern (Grau=> Blockiert, Purple => Klickbar)
@@ -77,7 +97,7 @@ public partial class AppointmentPage : ContentPage
 
     public void OnParticipantsClicked(object sender, EventArgs e)
     {
-        NavigateToPage(sender, e, new ParticipantPage());
+        NavigateToPage(sender, e, new ParticipantPage(_Appointment));
     }
 
     public void OnRatingClicked(object sender, EventArgs e)

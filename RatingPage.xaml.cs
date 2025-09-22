@@ -27,6 +27,7 @@ public partial class RatingPage : ContentPage
     private void UpdateAverageRating()
     {
         AverageRatingView.Rating = AverageRating;
+        AverageRatingNumberText.Text = AverageRating.ToString("n1");
     }
 
     private float AverageRating
