@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Animations;
+﻿using Android.Text.Method;
+using Microsoft.Maui.Animations;
 using System.Runtime.CompilerServices;
 
 namespace Board_Gamer_App;
@@ -32,12 +33,12 @@ public partial class VotingPage : ContentPage
             "Board game name...",
             maxLength: 50
         );
+        if (IsGameAlreadyInList(gameName)) return;
 
         // Check if user entered a name and didn't cancel
-        if (!string.IsNullOrWhiteSpace(gameName))
-        {
-            AddBoardGame(gameName);
-        }
+        if (string.IsNullOrWhiteSpace(gameName)) return;
+        
+        AddBoardGame(gameName);
     }
 
     private void OnDeleteButtonClicked(object sender, EventArgs e)
@@ -119,7 +120,17 @@ public partial class VotingPage : ContentPage
         }
         return highestCount;
     }
-
+    private bool IsGameAlreadyInList(string gameName)
+    {
+        for(int i = 0; i < _Appointment.BoardGames.Count(); i++)
+        {
+            if (_Appointment.BoardGames[i].Name == gameName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     private void RefreshList()
     {
         UpdateMostPopularGame();
