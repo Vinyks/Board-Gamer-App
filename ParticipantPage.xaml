@@ -2,7 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Board_Gamer_App.ParticipantPage"
-             Title="ParticipantPage">
+             Title="ParticipantPage"
+			 BackgroundColor="#e6904e"
+			 Shell.BackgroundColor="#9e4539"
+			 Shell.TitleColor="#e6904e">
     <Grid>
         <Image
             x:Name="_MyImage"
@@ -11,7 +14,7 @@
         </Image>
         <VerticalStackLayout>
             <ScrollView>
-                <ListView x:Name="ParticipantList" ItemSelected="OnItemSelected" RowHeight="50">
+				<ListView x:Name="ParticipantList" ItemSelected="OnItemSelected" RowHeight="50" SeparatorColor="#7a3045">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -48,7 +51,7 @@
                                     VerticalOptions="Start" 
                                     HorizontalOptions="Start"
                                     FontSize="14"
-                                    TextColor="CornflowerBlue"/>
+                                    TextColor="#7a3045"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

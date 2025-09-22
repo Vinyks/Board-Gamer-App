@@ -1,4 +1,7 @@
-﻿namespace Board_Gamer_App;
+﻿using Microsoft.Maui.Animations;
+using System.Runtime.CompilerServices;
+
+namespace Board_Gamer_App;
 
 public partial class VotingPage : ContentPage
 {
@@ -7,7 +10,7 @@ public partial class VotingPage : ContentPage
     private bool _DeleteButtonVisible = false;
     private bool _VoteButtonVisible = true;
 
-    private Color _VotedColor = new Color(10, 220, 30);
+    private Color _VotedColor = Color.FromArgb("#91db69");
     private Color _NotVotedColor = new Color(248, 249, 250);
 
     private Appointment _Appointment;
@@ -29,7 +32,6 @@ public partial class VotingPage : ContentPage
             "Board game name...",
             maxLength: 50
         );
-
 
         // Check if user entered a name and didn't cancel
         if (!string.IsNullOrWhiteSpace(gameName))
@@ -82,8 +84,45 @@ public partial class VotingPage : ContentPage
         RefreshList();
     }
 
+    private void UpdateMostPopularGame()
+    {
+        int[] voteCounts = new int[_Appointment.BoardGames.Count()];
+        for (int i = 0; i < _Appointment.BoardGames.Count; i++)
+        {
+            BoardGame g = _Appointment.BoardGames[i];
+            voteCounts[i] = 0;
+
+            voteCounts[i] += g.IsVoted ? 1 : 0;
+
+            //Code for grabbing the votes from non-local players
+        }
+        int highestCount = GetHighestVoteCount(voteCounts);
+        List<BoardGame> winnerBoardGames = new();
+        for (int i = 0; i < voteCounts.Length; i++)
+        {
+            if (voteCounts[i] == highestCount) winnerBoardGames.Add(_Appointment.BoardGames[i]);
+        }
+
+        winnerBoardGames = winnerBoardGames.OrderBy(x => x.Name).ToList();
+        if(winnerBoardGames.Count > 0)
+        {
+            PopularChoiceLabel.Text = winnerBoardGames[0].Name;
+        }
+    }
+
+    private int GetHighestVoteCount(int[] voteCounts)
+    {
+        int highestCount = -1;
+        for (int i = 0; i < voteCounts.Length; i++)
+        {
+            if (voteCounts[i] > highestCount) highestCount = voteCounts[i];
+        }
+        return highestCount;
+    }
+
     private void RefreshList()
     {
+        UpdateMostPopularGame();
         GamesCollectionView.ItemsSource = null;
         GamesCollectionView.ItemsSource = _Appointment.BoardGames;
     }
