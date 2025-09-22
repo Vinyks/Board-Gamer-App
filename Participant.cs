@@ -16,6 +16,7 @@ namespace Board_Gamer_App
             Verhindert
         }
 
+        private bool _IsPawn, _IsKing;
         private string _Person, _StatusNachricht;
         private Statuses _Status;
 
@@ -35,8 +36,11 @@ namespace Board_Gamer_App
 
         }
 
+        public bool IsPawn {  get => _IsPawn; set => _IsPawn = value; }
+        public bool IsKing { get => _IsKing; set => _IsKing = value; }
         public string Person { get => _Person; set => _Person = value; }
         public string StatusNachricht { get => _StatusNachricht; set => _StatusNachricht = value; }
         public Statuses Status { get => _Status; set => _Status = value; }
+        
     }
 }
