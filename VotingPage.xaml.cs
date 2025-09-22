@@ -1,8 +1,4 @@
-﻿using Android.Text.Method;
-using Microsoft.Maui.Animations;
-using System.Runtime.CompilerServices;
-
-namespace Board_Gamer_App;
+﻿namespace Board_Gamer_App;
 
 public partial class VotingPage : ContentPage
 {
@@ -37,7 +33,7 @@ public partial class VotingPage : ContentPage
 
         // Check if user entered a name and didn't cancel
         if (string.IsNullOrWhiteSpace(gameName)) return;
-        
+
         AddBoardGame(gameName);
     }
 
@@ -105,7 +101,7 @@ public partial class VotingPage : ContentPage
         }
 
         winnerBoardGames = winnerBoardGames.OrderBy(x => x.Name).ToList();
-        if(winnerBoardGames.Count > 0)
+        if (winnerBoardGames.Count > 0)
         {
             PopularChoiceLabel.Text = winnerBoardGames[0].Name;
         }
@@ -122,7 +118,7 @@ public partial class VotingPage : ContentPage
     }
     private bool IsGameAlreadyInList(string gameName)
     {
-        for(int i = 0; i < _Appointment.BoardGames.Count(); i++)
+        for (int i = 0; i < _Appointment.BoardGames.Count(); i++)
         {
             if (_Appointment.BoardGames[i].Name == gameName)
             {
