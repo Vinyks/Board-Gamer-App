@@ -38,7 +38,7 @@ namespace Board_Gamer_App.Platforms.Android
             {
                 _NextAppointment.IsCuisineVoted = true;
                 AndroidNotification androidNotification = new("TimerAppointment", "AppointmentNotification", "Timer for checking next Appointment", NotificationImportance.Default);
-                androidNotification.DisplayNotification("MeetingPage", "Nächster Termin", "Der Spieleabend beginnt bald!");
+                androidNotification.DisplayNotification("AppointmentPage", "Nächster Termin", "Der Spieleabend beginnt bald!");
 
             } 
             if(((difference.Minutes > 30 && difference.Hours == 0 && difference.Days == 0) || (difference.Hours == 1 && difference.Days == 0)) && !_NextAppointment.IsCuisineVoted)
