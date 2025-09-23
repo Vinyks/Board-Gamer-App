@@ -1,11 +1,15 @@
 ﻿using Board_Gamer_App.Resources.Values;
 using CommunityToolkit.Maui.Core.Extensions;
 
+
 namespace Board_Gamer_App;
 
 public partial class ParticipantPage : ContentPage
 {
     private Appointment _Appointment;
+
+    string _PathImagePawn = "chess_pawn2.png";
+    string _PathImageKing = "dotnet_bot.png";
 
     public ParticipantPage(Appointment appointment)
     {
@@ -13,20 +17,17 @@ public partial class ParticipantPage : ContentPage
 
         for (int i = 0; i < _Appointment.Participants.Count; i++)
         {
-
             if (_Appointment.Name == _Appointment.Participants[i].Person)
             {
-                _Appointment.Participants[i].IsKing = true;
-                _Appointment.Participants[i].IsPawn = false;
+                _Appointment.Participants[i].ImagePath = _PathImageKing;
             }
             else 
             {
-                _Appointment.Participants[i].IsKing = false;
-                _Appointment.Participants[i].IsPawn = true;
+                _Appointment.Participants[i].ImagePath =_PathImagePawn;
             }
         }
         InitializeComponent();
-        ParticipantList.ItemsSource = _Appointment.Participants.ToObservableCollection();
+        ParticipantList.ItemsSource = _Appointment.Participants;
     }
 
     protected override void OnNavigatedTo(NavigatedToEventArgs args)

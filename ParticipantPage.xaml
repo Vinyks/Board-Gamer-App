@@ -22,21 +22,14 @@
                                 RowDefinitions="*, *"
                                 ColumnDefinitions="50, auto">
                                     <Image 
-                                    Source="chess_pawn2.png"
+                                    Source="{Binding ImagePath}"
                                     Grid.Column="0"
                                     Grid.RowSpan="2"
                                     VerticalOptions="Center" 
                                     HorizontalOptions="Center"
-                                    IsVisible="{Binding IsPawn}"/>
-                                    <Image 
-                                    Source="dotnet_bot.png"
-                                    Grid.Column="0"
-                                    Grid.RowSpan="2"
-                                    VerticalOptions="Center" 
-                                    HorizontalOptions="Center"
-                                    IsVisible="{Binding IsKing}"/>
+                                        IsVisible="True"/>
                                     <Label 
-                                    Text="{Binding Person}"
+                                    Text="{Binding ImagePath}"
                                     Grid.Column="1"
                                     Grid.Row="0"
                                     VerticalOptions="End" 

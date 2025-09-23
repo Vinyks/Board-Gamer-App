@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Board_Gamer_App
 {
@@ -17,7 +18,7 @@ namespace Board_Gamer_App
         }
 
         private bool _IsPawn, _IsKing;
-        private string _Person, _StatusNachricht;
+        private string _Person, _StatusNachricht, _ImagePath;
         private Statuses _Status;
 
         public Participant(string person, Statuses status)
@@ -39,8 +40,9 @@ namespace Board_Gamer_App
         public bool IsPawn {  get => _IsPawn; set => _IsPawn = value; }
         public bool IsKing { get => _IsKing; set => _IsKing = value; }
         public string Person { get => _Person; set => _Person = value; }
+        public string ImagePath { get => _ImagePath; set => _ImagePath = value; }
         public string StatusNachricht { get => _StatusNachricht; set => _StatusNachricht = value; }
         public Statuses Status { get => _Status; set => _Status = value; }
-        
+
     }
 }
