@@ -8,8 +8,9 @@ public partial class ParticipantPage : ContentPage
 {
     private Appointment _Appointment;
 
-    string _PathImagePawn = "chess_pawn2.png";
-    string _PathImageKing = "dotnet_bot.png";
+    string _PathImagePawn = "chess_pawn.png";
+    string _PathImagePawnHighlighted = "chess_pawn_highlighted";
+    string _PathImageKing = "chess_king.png";
 
     public ParticipantPage(Appointment appointment)
     {
@@ -21,9 +22,13 @@ public partial class ParticipantPage : ContentPage
             {
                 _Appointment.Participants[i].ImagePath = _PathImageKing;
             }
-            else 
+            else if (_Appointment.Participants[i].Person == PlayerData.PlayerName)
             {
-                _Appointment.Participants[i].ImagePath =_PathImagePawn;
+                _Appointment.Participants[i].ImagePath = _PathImagePawnHighlighted;
+            }
+            else
+            {
+                _Appointment.Participants[i].ImagePath = _PathImagePawn;
             }
         }
         InitializeComponent();

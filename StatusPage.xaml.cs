@@ -31,7 +31,7 @@ public partial class StatusPage : ContentPage
         _Participant.StatusNachricht = _Messages[(int)_Participant.Status];
 #if ANDROID
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
-        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Ist p「enktlich");
+        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Ist pünktlich");
 #endif
         await DisplayAlert("Status Aktualisiert", "Ich bin pünktlich", "OK");
     }
@@ -39,20 +39,21 @@ public partial class StatusPage : ContentPage
     async void OnLateButtonClicked(object sender, EventArgs e)
     {
         StatusMessage.Text = "Verspätet";
-        string verspaetungsGrund = await DisplayPromptAsync(
+        string verspaetungsZeit = await DisplayPromptAsync(
             "Verspätung",
-            "Verspätungsgrund:",
+            "Geschätzte Verspätung in Minuten:",
             "OK",
             "Abbrechen",
-            "Grund...",
+            "... min",
             maxLength: 50
             );
         _Participant.Status = Participant.Statuses.Verspaetet;
         _Participant.StatusNachricht = _Messages[(int)_Participant.Status];
 #if ANDROID
         AndroidNotification androidNotification = new("Test", "Notification", "Testing", Android.App.NotificationImportance.Default);
-        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Verspaetet sich: "+verspaetungsGrund);
+        androidNotification.DisplayNotification("ParticipantPage", "Status Aktualisiert", "Verspätet sich um: "+verspaetungsZeit);
 #endif
+        await DisplayAlert("Status Aktualisiert", "Ich verspäte mich", "OK");
     }
 
     async void OnNotArrivingButtonClicked(object sender, EventArgs e)
