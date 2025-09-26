@@ -6,45 +6,47 @@
 			 BackgroundColor="#e6904e"
 			 Shell.BackgroundColor="#9e4539"
 			 Shell.TitleColor="#e6904e">
-
-    <VerticalStackLayout>
-        <ScrollView>
-            <ListView x:Name="ParticipantList" ItemSelected="OnItemSelected" RowHeight="50" SeparatorColor="#7a3045">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid 
-                                RowDefinitions="*, *"
-                                ColumnDefinitions="50, auto">
-                                <Image 
-                                    Source="{Binding ImagePath}"
-                                    Grid.Column="0"
-                                    Grid.RowSpan="2"
-                                    VerticalOptions="Center" 
-                                    HorizontalOptions="Center"
-                                    IsVisible="True"/>
-                                <Label 
-                                    Text="{Binding Person}"
-                                    Grid.Column="1"
-                                    Grid.Row="0"
-                                    VerticalOptions="End" 
-                                    HorizontalOptions="Start"
-                                    FontSize="16"
-                                    FontAttributes="Bold"
-                                    TextColor="Black"/>
-                                <Label 
-                                    Text="{Binding StatusNachricht}"
-                                    Grid.Column="1"
-                                    Grid.Row="1"
-                                    VerticalOptions="Start" 
-                                    HorizontalOptions="Start"
-                                    FontSize="14"
-                                    TextColor="#7a3045"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollView>
-    </VerticalStackLayout>
+    <Grid>
+        <Image Source="chess_background.png"></Image>
+        <VerticalStackLayout>
+            <ScrollView>
+                <ListView x:Name="ParticipantList" ItemSelected="OnItemSelected" RowHeight="50" SeparatorColor="#7a3045">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid 
+                                    RowDefinitions="*, *"
+                                    ColumnDefinitions="50, auto">
+                                    <Image 
+                                        Source="{Binding ImagePath}"
+                                        Grid.Column="0"
+                                        Grid.RowSpan="2"
+                                        VerticalOptions="Center" 
+                                        HorizontalOptions="Center"
+                                        IsVisible="True"/>
+                                    <Label 
+                                        Text="{Binding Person}"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        VerticalOptions="End" 
+                                        HorizontalOptions="Start"
+                                        FontSize="16"
+                                        FontAttributes="Bold"
+                                        TextColor="Black"/>
+                                    <Label 
+                                        Text="{Binding StatusNachricht}"
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        VerticalOptions="Start" 
+                                        HorizontalOptions="Start"
+                                        FontSize="14"
+                                        TextColor="#7a3045"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

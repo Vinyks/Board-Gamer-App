@@ -7,6 +7,7 @@
 			 Shell.BackgroundColor="#9e4539"
 			 Shell.TitleColor="#e6904e">
     <Grid>
+        <Image Source="appointment_background2.png"></Image>
 		<Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

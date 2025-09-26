@@ -6,37 +6,39 @@
 			 BackgroundColor="#e6904e"
 			 Shell.BackgroundColor="#9e4539"
 			 Shell.TitleColor="#e6904e">
+    <Grid>
+        <Image Source="chess_background.png"></Image>
+        <VerticalStackLayout>
 
-    <VerticalStackLayout>
+            <Label Text="Status"
+                   x:Name="StatusMessage"
+                   FontSize="Medium"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   Margin="3"/>
 
-        <Label Text="Status"
-               x:Name="StatusMessage"
-               FontSize="Medium"
-               VerticalOptions="Center" 
-               HorizontalOptions="Center"
-               Margin="3"/>
-
-        <Button Text="Ich bin pünktlich"
-                Clicked="OnOnTimeButtonClicked"
-                BackgroundColor="#1ebc73"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center"
-				MinimumWidthRequest="150"
-                Margin="3"/>
-        <Button Text="Ich verspäte mich" 
-                Clicked="OnLateButtonClicked"
-                BackgroundColor="#f9c22b"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-				MinimumWidthRequest="150"
-                Margin="3"/>
-        <Button Text="Ich komme nicht"
-                Clicked="OnNotArrivingButtonClicked"
-                BackgroundColor="#ae2334"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-				MinimumWidthRequest="150"
-                Margin="3"/>
+            <Button Text="Ich bin pünktlich"
+                    Clicked="OnOnTimeButtonClicked"
+                    BackgroundColor="#1ebc73"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+				    MinimumWidthRequest="150"
+                    Margin="3"/>
+            <Button Text="Ich verspäte mich" 
+                    Clicked="OnLateButtonClicked"
+                    BackgroundColor="#f9c22b"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+				    MinimumWidthRequest="150"
+                    Margin="3"/>
+            <Button Text="Ich komme nicht"
+                    Clicked="OnNotArrivingButtonClicked"
+                    BackgroundColor="#ae2334"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+				    MinimumWidthRequest="150"
+                    Margin="3"/>
         
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

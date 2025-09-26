@@ -6,8 +6,9 @@
 			 BackgroundColor="#e6904e"
 			 Shell.BackgroundColor="#9e4539"
 			 Shell.TitleColor="#e6904e">
-	
-    <VerticalStackLayout x:Name="MainLayout">
+    <Grid>
+        <Image Source="chess_background.png"></Image>
+        <VerticalStackLayout x:Name="MainLayout">
         <Label 
             Text="Deine Essensrichtung Präferenz"
             FontSize="24"
@@ -66,4 +67,5 @@
 			BackgroundColor="#9e4539"
             Margin="20"/>
     </VerticalStackLayout>
+    </Grid>
 </ContentPage>

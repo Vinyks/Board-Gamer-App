@@ -11,6 +11,7 @@
 	
 	
     <Grid>
+        <Image Source="chess_background.png"></Image>
 		<ScrollView>
 			<VerticalStackLayout Spacing="20" Padding="20">
 

@@ -8,7 +8,9 @@
 			 Shell.BackgroundColor="#9e4539"
 			 Shell.TitleColor="#e6904e">
 
-	<VerticalStackLayout Spacing="50">
+    <Grid>
+        <Image Source="chess_background.png"></Image>
+        <VerticalStackLayout Spacing="50">
 		<CollectionView x:Name="RatingCollectionView" >
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -72,4 +74,5 @@
                     FontSize="Medium"/>
 		</VerticalStackLayout>
 	</VerticalStackLayout>
+    </Grid>
 </ContentPage>

@@ -9,7 +9,7 @@ public partial class ParticipantPage : ContentPage
     private Appointment _Appointment;
 
     string _PathImagePawn = "chess_pawn.png";
-    string _PathImagePawnHighlighted = "chess_pawn_highlighted";
+    string _PathImagePawnHighlighted = "chess_pawn_highlighted.png";
     string _PathImageKing = "chess_king.png";
 
     public ParticipantPage(Appointment appointment)
