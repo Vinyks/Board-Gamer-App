@@ -7,13 +7,13 @@ public partial class OrderPage : ContentPage
 {
     private ObservableCollection<Order> _Orders = new();
 
-    private Appointment _CurrentLoadedAppointment;
+    private Appointment _Appointment;
 
     public OrderPage(Appointment appointment, Menu menu)
     {
         InitializeComponent();
 
-        _CurrentLoadedAppointment = appointment;
+        _Appointment = appointment;
         _Orders = GenerateOrderListFromMenu(menu);
 
         ItemGrid.ItemsSource = _Orders;
@@ -22,19 +22,18 @@ public partial class OrderPage : ContentPage
     }
     protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
     {
-        _CurrentLoadedAppointment.Orders = _Orders.ToList();
-        SaveManagement.SaveObjectAsXML("NextAppointment.xml", _CurrentLoadedAppointment);
+        _Appointment.Orders = _Orders.ToList();
 
         base.OnNavigatedFrom(args);
     }
     private ObservableCollection<Order> GenerateOrderListFromMenu(Menu menu)
     {
-        ObservableCollection<Order> orders = _CurrentLoadedAppointment.Orders.ToObservableCollection();
+        ObservableCollection<Order> orders = _Appointment.Orders.ToObservableCollection();
 
         for (int i = 0; i < orders.Count; i++)
         {
             Menu.Item item = menu.Items[i];
-            orders[i] = new Order(item.Name, i, item.Price, _CurrentLoadedAppointment.Orders[i].Amount);
+            orders[i] = new Order(item.Name, i, item.Price, _Appointment.Orders[i].Amount);
         }
 
         return orders;
