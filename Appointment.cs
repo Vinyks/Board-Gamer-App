@@ -65,6 +65,7 @@
         }
 
         private readonly string[] _CuisinesReadonly = ["Turkish", "Greek", "Italian", "Chinese", "Japanese", "German"];
+        private readonly string[] _CuisinesReadonlyGerman = ["Türkisch", "Griechisch", "Italienisch", "Chinesisch", "Japanisch", "Deutsch"];
         private readonly string[] _PlayersReadonly = ["Huber", "Laura", "Willhelm", "Mustermann", "Gleiss", "Müller"];
         public void Randomize()
         {
@@ -88,7 +89,7 @@
             List<int> ranks = new List<int>() {1,2,3,4,5,6};
             for (int i = 0; i < cuisines.Length; i++)
             {
-                cuisines[i] = new Cuisine(_CuisinesReadonly[i], ranks[random.Next(0, ranks.Count())]);
+                cuisines[i] = new Cuisine(_CuisinesReadonly[i], ranks[random.Next(0, ranks.Count())], _CuisinesReadonlyGerman[i]);
                 ranks.Remove(cuisines[i].Rank);
             }
             _Cuisines = [.. cuisines];

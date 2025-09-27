@@ -37,7 +37,7 @@
                                    FontSize="24"
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"/>
-                            <Label Text="{Binding Name}"
+                            <Label Text="{Binding DisplayName}"
                                    TextColor="White"
                                    FontSize="24"
                                    HorizontalOptions="End"

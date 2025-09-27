@@ -9,7 +9,7 @@ public partial class OrderPage : ContentPage
 
     private Appointment _Appointment;
 
-    public OrderPage(Appointment appointment, Menu menu)
+    public OrderPage(Appointment appointment, Menu menu, string displayName)
     {
         InitializeComponent();
 
@@ -17,9 +17,10 @@ public partial class OrderPage : ContentPage
         _Orders = GenerateOrderListFromMenu(menu);
 
         ItemGrid.ItemsSource = _Orders;
-        MenuName.Text = menu.Name;
+        MenuName.Text = displayName;
         UpdateTotal();
     }
+
     protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
     {
         _Appointment.Orders = _Orders.ToList();

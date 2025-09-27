@@ -137,7 +137,7 @@ public partial class FoodPage : ContentPage
 
     private void OnOrderButtonClicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new OrderPage(_Appointment, GetMostPopularMenu()));
+        Navigation.PushAsync(new OrderPage(_Appointment, GetMostPopularMenu(), _Cuisines[0].DisplayName));
     }
 
     private Dictionary<string, List<Menu.Item>> MenuListToDictionary(List<Menu> menus)

@@ -32,6 +32,7 @@ namespace Board_Gamer_App
 
 
         private readonly string[] _CuisinesReadonly = ["Turkish", "Greek", "Italian", "Chinese", "Japanese", "German"];
+        private readonly string[] _CuisinesReadonlyGerman = ["Türkisch", "Griechisch", "Italienisch", "Chinesisch", "Japanisch", "Deutsch"];
         private readonly string[] _PlayersReadonly = ["Huber", "Laura", "Willhelm", "Mustermann", "Gleiss", "Müller"];
 
         private List<Appointment> GetFutureAppointments()
@@ -92,7 +93,7 @@ namespace Board_Gamer_App
 
             for (int i = 0; i < _CuisinesReadonly.Length; i++)
             {
-                cuisines[i] = new Cuisine(_CuisinesReadonly[i], i + 1);
+                cuisines[i] = new Cuisine(_CuisinesReadonly[i], i + 1, _CuisinesReadonlyGerman[i]);
             }
 
             return cuisines.ToList();
